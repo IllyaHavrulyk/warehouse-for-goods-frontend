@@ -1,21 +1,18 @@
 import logo from "./logo.svg";
 import "./App.css";
 import axios from "axios";
+import Header from "./Components/Header/Header";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import GoodsContainer from "./Components/Goods/GoodsContainer";
 
-function App() {
+
+const App = () => {
   return (
     <div className="App">
-      <button
-        onClick={() => {
-          axios
-            .get("http://localhost:8080/doctors", { withCredentials: true })
-            .then((res) => {
-              alert("Товар : \n" + res);
-            });
-        }}
-      >
-        Взяти товар
-      </button>
+      <Header />
+      <Router path="/home">
+        <GoodsContainer />
+      </Router>
     </div>
   );
 }
