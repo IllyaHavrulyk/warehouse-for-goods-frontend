@@ -6,11 +6,11 @@ import React from 'react'
 const Tiles = ({ goods, gridMarkup }) => {
     return (
 
-        <CardGroup style={{margin: gridMarkup === "remaining" ? " auto": null }}>
+        <CardGroup style={{margin: gridMarkup === "remaining" ? " auto": null }} >
             {
                 goods.map((item, index) => (
-                    <Col md={gridMarkup === "remaining" ? true : 3} xs sm={gridMarkup === "remaining" ? true : 2} key={index}>
-                        <Card key={index} style={{ width: '18rem' }}>
+                    <Col md lg={gridMarkup === "remaining" ? true : 3} xs sm={12} key={index}>
+                        <Card key={index} style={{ width: '15rem' }}>
                             <Card.Img variant="top" src={item.img_url} style={{ maxWidth: 25 + "%", height: "auto", margin: 0 + " auto" }} />
                             <Card.Body>
                                 <Card.Title>Card Title</Card.Title>
