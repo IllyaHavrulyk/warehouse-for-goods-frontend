@@ -3,17 +3,21 @@ import "./App.css";
 
 import axios from "axios";
 import Header from "./Components/Header/Header";
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import GoodsContainer from "./Components/Goods/GoodsContainer";
+import AddGoodsContainer from "./Components/AddGoods/AddGoodsContainer";
 
 
 const App = () => {
   return (
     <div className="App">
       <Header />
-      <Router path="/home">
+      <Route path="/home">
         <GoodsContainer />
-      </Router>
+      </Route>
+      <Route path="/add">
+        <AddGoodsContainer />
+      </Route>
     </div>
   );
 }
