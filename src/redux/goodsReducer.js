@@ -60,7 +60,6 @@ const goodsReducer = (state = initialState, action) => {
 export const requestGoods = () => {
     return (dispatch) => {
         goodsApi.initialGoods().then(response => {
-            debugger;
             dispatch(initialGoods(response.data));
         })
     }
