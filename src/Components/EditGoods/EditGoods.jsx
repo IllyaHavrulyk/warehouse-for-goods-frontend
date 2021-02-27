@@ -3,25 +3,26 @@ import { Field, Form } from 'react-final-form';
 import { Redirect } from 'react-router-dom';
 import { Input, TextArea } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
-import style from './AddGoods.module.css';
+import style from './EditGoods.module.css';
 
-const AddGoods = ({ addGoods, isPutGoods }) => {
+const EditGoods = ({ goods, isEditGoods, editGoods }) => {
     const onSubmit = (value) => {
-        addGoods(value);
+        value.id = goods.id
+        editGoods(value);
     }
-    if (isPutGoods) {
+    if (isEditGoods) {
         return <Redirect to="/home" />
     }
     return (
         <div>
-            <AddGoodsForm onSubmit={onSubmit} />
+            <EditGoodsForm onSubmit={onSubmit} goods={goods} />
         </div>
     )
 }
 
-export default AddGoods;
+export default EditGoods;
 
-const AddGoodsForm = ({ onSubmit }) => {
+const EditGoodsForm = ({ onSubmit, goods }) => {
     return (
         <Form onSubmit={onSubmit}>
             {({ handleSubmit }) => (
@@ -34,6 +35,7 @@ const AddGoodsForm = ({ onSubmit }) => {
                             name="name"
                             component={Input}
                             placeholder="Name goods"
+                            initialValue={goods.name}
                             validate={values => {
                                 return Required(values);
                             }}
@@ -44,6 +46,7 @@ const AddGoodsForm = ({ onSubmit }) => {
                             name="price"
                             component={Input}
                             placeholder="Price"
+                            initialValue={goods.price}
                             validate={values => {
                                 return Required(values);
                             }}
@@ -54,6 +57,7 @@ const AddGoodsForm = ({ onSubmit }) => {
                             name="required"
                             component={Input}
                             placeholder="Required"
+                            initialValue={goods.required}
                             validate={values => {
                                 return Required(values);
                             }}
@@ -64,6 +68,7 @@ const AddGoodsForm = ({ onSubmit }) => {
                             name="description"
                             component={TextArea}
                             placeholder="description"
+                            initialValue={goods.description}
                             validate={values => {
                                 return Required(values);
                             }}
@@ -74,13 +79,14 @@ const AddGoodsForm = ({ onSubmit }) => {
                             name="img_url"
                             component={Input}
                             placeholder="Enter url address"
+                            initialValue={goods.img_url}
                             validate={values => {
                                 return Required(values);
                             }}
                         />
                     </div>
                     <div className={style.addButton}>
-                        <button>Add</button>
+                        <button>Edit</button>
                     </div>
                 </form>
             )}

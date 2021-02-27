@@ -6,6 +6,7 @@ import Header from "./Components/Header/Header";
 import { Route } from 'react-router-dom';
 import GoodsContainer from "./Components/Goods/GoodsContainer";
 import AddGoodsContainer from "./Components/AddGoods/AddGoodsContainer";
+import EditGoodsContainer from "./Components/EditGoods/EditGoodsContainer";
 
 
 const App = () => {
@@ -17,6 +18,9 @@ const App = () => {
       </Route>
       <Route path="/add">
         <AddGoodsContainer />
+      </Route>
+      <Route path="/edit/:goodsId?">
+        <EditGoodsContainer />
       </Route>
     </div>
   );

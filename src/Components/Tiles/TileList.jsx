@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from 'react-router-dom';
 import TileItem from './TileItem';
 
-const TileList = ({ goods }) => {
+const TileList = ({ goods, deleteGoods }) => {
     const goodsIntegralOffset = goods.length % 4;
     const goodsWithoutRemainder = goods.slice(0, goods.length - goodsIntegralOffset);
     const goodsRowsIntegral = renderRows(goodsWithoutRemainder);
@@ -27,7 +27,7 @@ const TileList = ({ goods }) => {
     return (
         (goodsRowsIntegral.map((row, index) => (
             <Row key={index}>
-                <TileItem goods={row} /> {console.log(index)}
+                <TileItem goods={row} deleteGoods={deleteGoods} /> {console.log(index)}
             </Row>
         ))
         ));

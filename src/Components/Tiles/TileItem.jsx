@@ -13,8 +13,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Tiles = ({ goods, gridMarkup }) => {
-
+const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
     const [open, setOpen] = React.useState(false);
 
     const handleClickOpen = () => {
@@ -31,10 +30,10 @@ const Tiles = ({ goods, gridMarkup }) => {
             {
                 goods.map((item, index) => (
                     <Col md lg={gridMarkup === "remaining" ? true : 3} xs sm={12} key={index}>
-                        <Card key={index} style={{ width: '15rem', marginTop: 10 + "px" }}>
+                        <Card key={item.id} style={{ width: '15rem', marginTop: 10 + "px" }}>
                             <Card.Img variant="top" src={item.img_url} style={{ maxWidth: 25 + "%", height: "auto", margin: 0 + " auto" }} />
                             <Card.Body >
-                                <Card.Title >Card Title</Card.Title>
+                                <Card.Title >{item.name}</Card.Title>
                                 <Card.Text>
                                     {item.description.length > 60 ? item.description.slice(0, 60) + "..." : item.description}
 
@@ -43,9 +42,15 @@ const Tiles = ({ goods, gridMarkup }) => {
                                 <Card.Text style={{ opacity: 0.8 }}>
                                     Date added : {item.date_added}
                                 </Card.Text>
-
-                                <Button variant="success" style={{ margin: 10 + "px" }}>Edit </Button>
-                                <Button variant="danger" style={{ margin: 10 + "px" }} onClick={handleClickOpen}> Delete</Button>
+                                <NavLink to={"/edit/" + item.id}>
+                                    <Button variant="success" style={{ margin: 10 + "px" }}>Edit </Button>
+                                </NavLink>
+                                <Button
+                                    variant="danger"
+                                    style={{ margin: 10 + "px" }}
+                                    onClick={() => {
+                                        deleteGoods(item.id);
+                                    }}> Delete</Button>
                             </Card.Body>
 
                             <Button variant="primary">View </Button>

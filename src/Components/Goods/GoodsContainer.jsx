@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { requestGoods } from '../../redux/goodsReducer';
+import { deleteGoods, requestGoods } from '../../redux/goodsReducer';
 import Goods from './Goods';
 
 class GoodsContainer extends React.Component {
@@ -32,4 +32,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     requestGoods,
+    deleteGoods
 })(GoodsContainer);
