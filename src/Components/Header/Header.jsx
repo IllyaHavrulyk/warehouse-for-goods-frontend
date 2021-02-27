@@ -2,13 +2,13 @@ import React from 'react'
 import { Button, Form, FormControl, Nav, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from 'react-router-dom';
-
+import WarehouseSvg from "../../assets/warehouse.svg";
 
 const Header = () => {
     return (
         <div>
-            <Navbar bg="primary" variant="dark">
-                <Navbar.Brand href="/home">Navbar</Navbar.Brand>
+            <Navbar style={{ backgroundColor: "#2391E6" }} variant="dark">
+                <Navbar.Brand href="/home" > <img src={WarehouseSvg} width="30" height="30" style={{ marginRight: 15 + "px" }} />  WarehouseForGoods</Navbar.Brand>
                 <Nav className="mr-auto">
                     <Nav.Link href="/home">Home</Nav.Link>
                     <Nav.Link href="/add">Add goods</Nav.Link>
