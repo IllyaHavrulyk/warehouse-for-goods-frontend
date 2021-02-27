@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const goodsApi = {
     initialGoods() {
-        return axios.get("http://localhost:3001/Products");
+        return axios.get("http://localhost:8080/product");
     },
     putGoods(data) {
         return axios.post("http://localhost:3001/Products", data);
