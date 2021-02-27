@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="App">
       <Header />
-      <Route path="/">
+      <Route exact path="/">
         <Redirect to="/home" />
       </Route>
       <Route path="/home">
