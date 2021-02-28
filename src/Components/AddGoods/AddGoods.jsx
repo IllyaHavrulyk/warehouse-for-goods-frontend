@@ -29,8 +29,9 @@ const AddGoodsForm = ({ onSubmit }) => {
                     <div className={style.nameForm}>
                         <h1>Goods</h1>
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
+
                             name="name"
                             component={Input}
                             placeholder="Name goods"
@@ -39,8 +40,9 @@ const AddGoodsForm = ({ onSubmit }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
+
                             name="price"
                             component={Input}
                             placeholder="Price"
@@ -49,8 +51,9 @@ const AddGoodsForm = ({ onSubmit }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
+
                             name="required"
                             component={Input}
                             placeholder="Required"
@@ -59,8 +62,9 @@ const AddGoodsForm = ({ onSubmit }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
+
                             name="description"
                             component={TextArea}
                             placeholder="description"
@@ -69,8 +73,9 @@ const AddGoodsForm = ({ onSubmit }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
+
                             name="img_url"
                             component={Input}
                             placeholder="Enter url address"

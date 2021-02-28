@@ -30,7 +30,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                     <div className={style.nameForm}>
                         <h1>Goods</h1>
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="name"
                             component={Input}
@@ -41,7 +41,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="price"
                             component={Input}
@@ -52,7 +52,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="required"
                             component={Input}
@@ -63,7 +63,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="description"
                             component={TextArea}
@@ -74,7 +74,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="img_url"
                             component={Input}

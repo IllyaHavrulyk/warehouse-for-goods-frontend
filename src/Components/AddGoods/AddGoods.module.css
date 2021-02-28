@@ -2,11 +2,20 @@
   width: 400px;
   padding: 40px;
   position: absolute;
+  border: 2px solid #2391E6;
+  border-radius: 5px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #191919;
+  background: rgba(12, 102, 192, 0.836);
   text-align: center;
+  -webkit-box-shadow: -2px 2px 16px 14px rgba(34, 60, 80, 0.42);
+  -moz-box-shadow: -2px 2px 16px 14px rgba(34, 60, 80, 0.42);
+  box-shadow: -2px 2px 16px 14px rgba(34, 60, 80, 0.42);
+}
+
+.box div {
+  color: black;
 }
 
 .nameForm h1 {
@@ -32,4 +41,30 @@
 
 .addButton button:hover {
   background: #2ecc71;
+}
+
+::placeholder {
+  color: white;
+  opacity: 0.5;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+  opacity: 0.5;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+  opacity: 0.5;
+}
+
+.addGoodsField span {
+  display: none;
+}
+
+.addGoodsField {
+  margin-top: 10px;
 }
