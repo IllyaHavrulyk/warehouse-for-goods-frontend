@@ -54,17 +54,6 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                     </div>
                     <div className={style.addGoodsField}>
                         <Field
-                            name="required"
-                            component={Input}
-                            placeholder="Required"
-                            initialValue={goods.required}
-                            validate={values => {
-                                return Required(values);
-                            }}
-                        />
-                    </div>
-                    <div className={style.addGoodsField}>
-                        <Field
                             name="description"
                             component={TextArea}
                             placeholder="description"
@@ -76,10 +65,10 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                     </div>
                     <div className={style.addGoodsField}>
                         <Field
-                            name="img_url"
+                            name="imgUrl"
                             component={Input}
                             placeholder="Enter url address"
-                            initialValue={goods.img_url}
+                            initialValue={goods.imgUrl}
                             validate={values => {
                                 return Required(values);
                             }}

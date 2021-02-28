@@ -54,17 +54,6 @@ const AddGoodsForm = ({ onSubmit }) => {
                     <div className={style.addGoodsField}>
                         <Field
 
-                            name="required"
-                            component={Input}
-                            placeholder="Required"
-                            validate={values => {
-                                return Required(values);
-                            }}
-                        />
-                    </div>
-                    <div className={style.addGoodsField}>
-                        <Field
-
                             name="description"
                             component={TextArea}
                             placeholder="description"
