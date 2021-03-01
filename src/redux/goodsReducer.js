@@ -61,9 +61,13 @@ export const requestGoods = () => {
     return (dispatch) => {
         goodsApi.initialGoods().then(response => {
             dispatch(initialGoods(response.data));
+        }).catch((e) => {
+            window.alert(e);
         })
+
     }
 }
+
 
 export const addGoods = (goods) => {
     return (dispatch) => {
