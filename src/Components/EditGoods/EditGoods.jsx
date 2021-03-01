@@ -30,7 +30,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                     <div className={style.nameForm}>
                         <h1>Goods</h1>
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="name"
                             component={Input}
@@ -41,7 +41,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="price"
                             component={Input}
@@ -52,18 +52,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                             }}
                         />
                     </div>
-                    <div>
-                        <Field
-                            name="required"
-                            component={Input}
-                            placeholder="Required"
-                            initialValue={goods.required}
-                            validate={values => {
-                                return Required(values);
-                            }}
-                        />
-                    </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
                             name="description"
                             component={TextArea}
@@ -74,12 +63,12 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                             }}
                         />
                     </div>
-                    <div>
+                    <div className={style.addGoodsField}>
                         <Field
-                            name="img_url"
+                            name="imgUrl"
                             component={Input}
                             placeholder="Enter url address"
-                            initialValue={goods.img_url}
+                            initialValue={goods.imgUrl}
                             validate={values => {
                                 return Required(values);
                             }}

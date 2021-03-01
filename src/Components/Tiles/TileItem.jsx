@@ -31,7 +31,7 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                 goods.map((item, index) => (
                     <Col md lg={gridMarkup === "remaining" ? true : 3} xs sm={12} key={index}>
                         <Card key={item.id} style={{ width: '15rem', marginTop: 10 + "px" }}>
-                            <Card.Img variant="top" src={item.img_url} style={{ maxWidth: 25 + "%", height: "auto", margin: 0 + " auto" }} />
+                            <Card.Img variant="top" src={item.imgUrl} style={{ maxWidth: 25 + "%", height: "auto", margin: 0 + " auto" }} />
                             <Card.Body >
                                 <Card.Title >{item.name}</Card.Title>
                                 <Card.Text>
