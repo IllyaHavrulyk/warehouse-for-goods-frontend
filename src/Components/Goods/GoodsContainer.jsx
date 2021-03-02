@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { deleteGoods, requestGoods } from '../../redux/goodsReducer';
+import { deleteGoods, requestGoods, setIsErrorEndError, setIsLoading } from '../../redux/goodsReducer';
+import Preloader from '../Preloader/Preloader';
+
 import Goods from './Goods';
 
 class GoodsContainer extends React.Component {
@@ -10,9 +12,9 @@ class GoodsContainer extends React.Component {
         this.props.requestGoods();
     }
     render() {
-        if (!this.props.isLoading) {
+        if (this.props.isLoading) {
             return (
-                <div></div>
+                <Preloader />
             )
         }
         return (
@@ -26,11 +28,15 @@ class GoodsContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         goods: state.goods.goods,
-        isLoading: state.goods.isLoading
+        isLoading: state.goods.isLoading,
+        isError: state.goods.isError,
+        error: state.goods.error
     }
 }
 
+
 export default connect(mapStateToProps, {
     requestGoods,
-    deleteGoods
+    deleteGoods,
+    setIsErrorEndError
 })(GoodsContainer);

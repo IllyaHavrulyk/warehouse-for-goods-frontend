@@ -6,13 +6,17 @@ const SET_IS_PUT_GOODS = "SET_IS_PUT_GOODS";
 const DELETE_GOODS = "DELETE_GOODS";
 const GET_GOODS = "GET_GOODS";
 const SET_IS_EDIT_GOODS = "SET_IS_EDIT_GOODS";
+const SET_IS_ERROR_AND_ERROR = "SET_IS_ERROR_AND_ERROR";
+const SET_IS_LOADING = "SET_IS_LOADING";
 
 const initialState = {
     goods: [],
     isLoading: false,
     isPutGoods: false,
     goodsEdit: null,
-    isEditGoods: false
+    isEditGoods: false,
+    isError: false,
+    error: null
 }
 
 const goodsReducer = (state = initialState, action) => {
@@ -21,7 +25,6 @@ const goodsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 goods: action.goods,
-                isLoading: true
             }
         }
         case ADD_GOODS: {
@@ -52,6 +55,18 @@ const goodsReducer = (state = initialState, action) => {
                 ...state,
                 isEditGoods: action.isEditGoods
             }
+        case SET_IS_ERROR_AND_ERROR:
+            return {
+                ...state,
+                isError: action.isError,
+                error: action.error
+            }
+        case SET_IS_LOADING: {
+            return {
+                ...state,
+                isLoading: action.isLoading
+            }
+        }
         default:
             return state;
     }
@@ -59,10 +74,13 @@ const goodsReducer = (state = initialState, action) => {
 
 export const requestGoods = () => {
     return (dispatch) => {
+        dispatch(setIsLoading(true));
         goodsApi.initialGoods().then(response => {
             dispatch(initialGoods(response.data));
         }).catch((e) => {
-            window.alert(e);
+            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
+        }).finally(() => {
+            dispatch(setIsLoading(false));
         })
 
     }
@@ -74,6 +92,8 @@ export const addGoods = (goods) => {
         goodsApi.putGoods(goods).then(response => {
             dispatch(putGoods(goods));
             dispatch(setIsPutGoods(true));
+        }).catch((e) => {
+            window.alert(e);
         })
     }
 }
@@ -82,6 +102,8 @@ export const deleteGoods = (goodsId) => {
     return (dispatch) => {
         goodsApi.deleteGoods(goodsId).then(response => {
             dispatch(deleteGoodsAC(goodsId));
+        }).catch((e) => {
+            window.alert(e);
         })
     }
 }
@@ -90,6 +112,8 @@ export const getGoods = (goodsId) => {
     return (dispatch) => {
         goodsApi.getGoods(goodsId).then(response => {
             dispatch(getGoodsAC(response.data));
+        }).catch((e) => {
+            window.alert(e);
         })
     }
 }
@@ -98,6 +122,8 @@ export const editGoods = (goods) => {
     return (dispatch) => {
         goodsApi.editGoods(goods).then(response => {
             dispatch(setIsEditGoods(true));
+        }).catch((e) => {
+            window.alert(e);
         })
     }
 }
@@ -132,4 +158,15 @@ export const getGoodsAC = (goods) => ({
 export const setIsEditGoods = (isEditGoods) => ({
     type: SET_IS_EDIT_GOODS,
     isEditGoods
+})
+
+export const setIsErrorEndError = (isError, error) => ({
+    type: SET_IS_ERROR_AND_ERROR,
+    error,
+    isError
+})
+
+export const setIsLoading = (isLoading) => ({
+    type: SET_IS_LOADING,
+    isLoading
 })

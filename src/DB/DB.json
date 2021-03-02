@@ -6,7 +6,7 @@
       "price": 34,
       "quantity": 12,
       "description": "A material which main purpose is to strenghten some construction by streaming through the holes.",
-      "img_url": "https://konstruktiv.kiev.ua/getimage/products/cement_5001(1).jpg",
+      "imgUrl": "https://konstruktiv.kiev.ua/getimage/products/cement_5001(1).jpg",
       "date_added": "10.11.2019"
     },
     {
@@ -14,16 +14,8 @@
       "price": "awdawd",
       "required": "awdwad",
       "description": "awdawd",
-      "img_url": "awd",
+      "imgUrl": "awd",
       "id": 10
-    },
-    {
-      "name": "wad",
-      "price": "waddwa",
-      "required": "wdaawd",
-      "description": "awdadw",
-      "img_url": "awddawdwa",
-      "id": 11
     }
   ]
 }

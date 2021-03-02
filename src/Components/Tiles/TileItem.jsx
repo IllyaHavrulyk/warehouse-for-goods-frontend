@@ -15,12 +15,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
     const [open, setOpen] = React.useState(false);
+    const [itemIdToDelete, setItemIdToDelete] = React.useState(-1);
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+    const handleDeleteAndClose = () => {
+        setOpen(false);
+        let tempId = itemIdToDelete;
+        setItemIdToDelete(-1);
+        deleteGoods(tempId);
+    }
 
     const handleClose = () => {
+        setItemIdToDelete(0);
         setOpen(false);
     };
 
@@ -49,7 +54,8 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                                     variant="danger"
                                     style={{ margin: 10 + "px" }}
                                     onClick={() => {
-                                        deleteGoods(item.id);
+                                        setItemIdToDelete(item.id);
+                                        setOpen(true);
                                     }}> Delete</Button>
                             </Card.Body>
 
@@ -66,16 +72,15 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogTitle id="alert-dialog-slide-title">{"Use Google's location service?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{"You are sure you want to delete this item?"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Let Google help apps determine location. This means sending anonymous location data to
-                        Google, even when no apps are running.
+                        click "yes" to delete or "no" if you do not want to delete
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} variant="outlined">Disagree</Button>
-                    <Button onClick={handleClose} variant="primary" color="primary" >Agree</Button>
+                    <Button onClick={handleClose} variant="outlined">No</Button>
+                    <Button onClick={handleDeleteAndClose} variant="primary" color="primary" >Yes</Button>
                 </DialogActions>
             </Dialog>
 

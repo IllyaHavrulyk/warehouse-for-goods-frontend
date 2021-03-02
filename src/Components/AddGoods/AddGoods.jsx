@@ -65,7 +65,7 @@ const AddGoodsForm = ({ onSubmit }) => {
                     <div className={style.addGoodsField}>
                         <Field
 
-                            name="img_url"
+                            name="imgUrl"
                             component={Input}
                             placeholder="Enter url address"
                             validate={values => {
