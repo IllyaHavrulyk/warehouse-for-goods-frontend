@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, FormControl, Nav, Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import WarehouseSvg from "../../assets/warehouse.svg";
 import HomeSvg from "../../assets/home.svg"
 import PlusSvg from "../../assets/plus.svg";
@@ -17,7 +17,7 @@ const Header = () => {
                     <Nav.Link href="/add"><img src={PlusSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />Add goods</Nav.Link>
                 </Nav>
                 <Form inline>
-                    <img src={SearchSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }}/>
+                    <img src={SearchSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                     <Button variant="outline-light">Search</Button>
                 </Form>
@@ -26,4 +26,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default withRouter(Header);

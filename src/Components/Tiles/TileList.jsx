@@ -9,8 +9,6 @@ const TileList = ({ goods, deleteGoods }) => {
     const goodsWithoutRemainder = goods.slice(0, goods.length - goodsIntegralOffset);
     const goodsRowsIntegral = renderRows(goodsWithoutRemainder);
     function renderRows(rows) {
-        console.log(rows);
-
         let array = [];
         let tempArray = [];
         for (let i = 0; i < rows.length; i++) {

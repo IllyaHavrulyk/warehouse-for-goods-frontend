@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { addGoods, setIsPutGoods } from '../../redux/goodsReducer';
 import AddGoods from './AddGoods';
 
@@ -20,6 +22,11 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps, { addGoods, setIsPutGoods })(AddGoodsContainer);
+export default compose(
+    connect(mapStateToProps, { addGoods, setIsPutGoods }),
+    withRouter
+)(AddGoodsContainer);
+
+//export default connect(mapStateToProps, { addGoods, setIsPutGoods })(withRouter(AddGoodsContainer));
 
 

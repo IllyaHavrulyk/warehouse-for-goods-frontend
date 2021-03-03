@@ -5,13 +5,10 @@ import { Input, TextArea } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
 import style from './EditGoods.module.css';
 
-const EditGoods = ({ goods, isEditGoods, editGoods }) => {
+const EditGoods = ({ goods, editGoods }) => {
     const onSubmit = (value) => {
         value.id = goods.id
         editGoods(value);
-    }
-    if (isEditGoods) {
-        return <Redirect to="/home" />
     }
     return (
         <div>

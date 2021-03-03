@@ -1,6 +1,6 @@
 import { goodsApi } from "../api/api";
 
-const INITIAL_GOODS = "SET_GOODS";
+const INITIAL_GOODS = "INITIAL_GOODS";
 const ADD_GOODS = "ADD_GOODS";
 const SET_IS_PUT_GOODS = "SET_IS_PUT_GOODS";
 const DELETE_GOODS = "DELETE_GOODS";
@@ -30,7 +30,7 @@ const goodsReducer = (state = initialState, action) => {
         case ADD_GOODS: {
             return {
                 ...state,
-                goods: state.goods.push(action.goods)
+                goods: [...state.goods, action.goods]
             }
         }
         case SET_IS_PUT_GOODS:
@@ -53,7 +53,8 @@ const goodsReducer = (state = initialState, action) => {
         case SET_IS_EDIT_GOODS:
             return {
                 ...state,
-                isEditGoods: action.isEditGoods
+                isEditGoods: action.isEditGoods,
+                goodsEdit: null
             }
         case SET_IS_ERROR_AND_ERROR:
             return {
@@ -77,11 +78,12 @@ export const requestGoods = () => {
         dispatch(setIsLoading(true));
         goodsApi.initialGoods().then(response => {
             dispatch(initialGoods(response.data));
-        }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
-        }).finally(() => {
-            dispatch(setIsLoading(false));
         })
+            .catch((e) => {
+                dispatch(setIsErrorEndError(true, "error: failed to get objects"));
+            }).finally(() => {
+                dispatch(setIsLoading(false));
+            })
 
     }
 }
