@@ -62,6 +62,17 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                     </div>
                     <div className={style.addGoodsField}>
                         <Field
+
+                            name="quantity"
+                            component={Input}
+                            placeholder="Enter quantity of products."
+                            validate={values => {
+                                return Required(values);
+                            }}
+                        />
+                    </div>
+                    <div className={style.addGoodsField}>
+                        <Field
                             name="imgUrl"
                             component={Input}
                             placeholder="Enter url address"

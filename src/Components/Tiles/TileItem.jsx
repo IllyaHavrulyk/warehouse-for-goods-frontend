@@ -45,7 +45,7 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                                 </Card.Text>
 
                                 <Card.Text style={{ opacity: 0.8 }}>
-                                    Date added : {item.date_added}
+                                    Date added : {item.dateAdded}
                                 </Card.Text>
                                 <NavLink to={"/edit/" + item.id}>
                                     <Button variant="success" style={{ margin: 10 + "px" }}>Edit </Button>

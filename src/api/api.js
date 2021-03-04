@@ -11,7 +11,7 @@ export const goodsApi = {
         return axios.delete("http://localhost:8080/product/delete/" + goodsId);
     },
     editGoods(goods) {
-        return axios.put("http://localhost:8080/product/update/" + goods.id, goods);
+        return axios.post("http://localhost:8080/product/update/" + goods.id, goods);
     },
     getGoods(goodsId) {
         return axios.get("http://localhost:8080/product/get/" + goodsId);
