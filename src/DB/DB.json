@@ -2,7 +2,7 @@
   "Products": [
     {
       "name": "Concrete",
-      "price": 34,
+      "price": "34",
       "description": "A material which main purpose is to strenghten some construction by streaming through the holes.",
       "imgUrl": "https://konstruktiv.kiev.ua/getimage/products/cement_5001(1).jpg",
       "id": 9
@@ -12,7 +12,16 @@
       "price": "awdawd",
       "description": "awdawd",
       "imgUrl": "awd",
-      "id": 10
+      "id": 10,
+      "dateAdded": "12/11/2001"
+    },
+    {
+      "name": "keaybord",
+      "price": "2520",
+      "description": "qwertyuiop lkjhgfd",
+      "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/71TBg4r1oNL._AC_SY450_.jpg",
+      "id": 11,
+      "dateAdded": "12/11/2001"
     }
   ]
 }

@@ -7,6 +7,7 @@ import { Redirect, Route } from 'react-router-dom';
 import GoodsContainer from "./Components/Goods/GoodsContainer";
 import AddGoodsContainer from "./Components/AddGoods/AddGoodsContainer";
 import EditGoodsContainer from "./Components/EditGoods/EditGoodsContainer";
+import ViewContainer from "./Components/View/ViewContainer";
 
 
 const App = () => {
@@ -24,6 +25,9 @@ const App = () => {
       </Route>
       <Route path="/edit/:goodsId?">
         <EditGoodsContainer />
+      </Route>
+      <Route path="/view/:goodsId?">
+        <ViewContainer />
       </Route>
     </div>
   );

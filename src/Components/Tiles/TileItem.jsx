@@ -1,19 +1,19 @@
-import { Button, Form, FormControl, Nav, Navbar, Card, CardGroup, Col } from "react-bootstrap";
+import { Button, Card, CardGroup, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from 'react-router-dom';
 import React from "react";
-import MaterialButton from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from "@material-ui/core/Slide";
+import style from "./TileItem.module.css";
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
+const Tiles = ({ goods, gridMarkup, deleteGoods, setGoodsView }) => {
     const [open, setOpen] = React.useState(false);
     const [itemIdToDelete, setItemIdToDelete] = React.useState(-1);
 
@@ -30,7 +30,6 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
     };
 
     return (
-
         <CardGroup style={{ margin: gridMarkup === "remaining" ? " auto" : null }} >
             {
                 goods.map((item, index) => (
@@ -45,7 +44,7 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                                 </Card.Text>
 
                                 <Card.Text style={{ opacity: 0.8 }}>
-                                    Date added : {item.date_added}
+                                    Date added : {item.dateAdded}
                                 </Card.Text>
                                 <NavLink to={"/edit/" + item.id}>
                                     <Button variant="success" style={{ margin: 10 + "px" }}>Edit </Button>
@@ -58,8 +57,9 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                                         setOpen(true);
                                     }}> Delete</Button>
                             </Card.Body>
-
-                            <Button variant="primary">View </Button>
+                            <NavLink className={style.view} to={"/view/" + item.id}>
+                                <Button variant="primary">View </Button>
+                            </NavLink>
                         </Card>
                     </Col>
                 ))
@@ -73,12 +73,12 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                 aria-describedby="alert-dialog-slide-description"
             >
                 <DialogTitle id="alert-dialog-slide-title">{"You are sure you want to delete this item?"}</DialogTitle>
-                <DialogContent>
+                <DialogContent >
                     <DialogContentText id="alert-dialog-slide-description">
                         click "yes" to delete or "no" if you do not want to delete
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions>
+                <DialogActions >
                     <Button onClick={handleClose} variant="outlined">No</Button>
                     <Button onClick={handleDeleteAndClose} variant="primary" color="primary" >Yes</Button>
                 </DialogActions>

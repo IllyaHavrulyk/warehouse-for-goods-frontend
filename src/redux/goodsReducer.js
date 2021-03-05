@@ -1,13 +1,13 @@
 import { goodsApi } from "../api/api";
 
-const INITIAL_GOODS = "INITIAL_GOODS";
-const ADD_GOODS = "ADD_GOODS";
-const SET_IS_PUT_GOODS = "SET_IS_PUT_GOODS";
-const DELETE_GOODS = "DELETE_GOODS";
-const GET_GOODS = "GET_GOODS";
-const SET_IS_EDIT_GOODS = "SET_IS_EDIT_GOODS";
-const SET_IS_ERROR_AND_ERROR = "SET_IS_ERROR_AND_ERROR";
-const SET_IS_LOADING = "SET_IS_LOADING";
+const INITIAL_GOODS = "warehouse/goods/INITIAL_GOODS";
+const ADD_GOODS = "warehouse/goods/ADD_GOODS";
+const SET_IS_PUT_GOODS = "warehouse/goods/SET_IS_PUT_GOODS";
+const DELETE_GOODS = "warehouse/goods/DELETE_GOODS";
+const GET_GOODS = "warehouse/goods/GET_GOODS";
+const SET_IS_EDIT_GOODS = "warehouse/goods/SET_IS_EDIT_GOODS";
+const SET_IS_ERROR_AND_ERROR = "warehouse/goods/SET_IS_ERROR_AND_ERROR";
+const SET_IS_LOADING = "warehouse/goods/SET_IS_LOADING";
 
 const initialState = {
     goods: [],
@@ -78,12 +78,11 @@ export const requestGoods = () => {
         dispatch(setIsLoading(true));
         goodsApi.initialGoods().then(response => {
             dispatch(initialGoods(response.data));
+        }).catch((e) => {
+            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
+        }).finally(() => {
+            dispatch(setIsLoading(false));
         })
-            .catch((e) => {
-                dispatch(setIsErrorEndError(true, "error: failed to get objects"));
-            }).finally(() => {
-                dispatch(setIsLoading(false));
-            })
 
     }
 }
@@ -95,7 +94,7 @@ export const addGoods = (goods) => {
             dispatch(putGoods(goods));
             dispatch(setIsPutGoods(true));
         }).catch((e) => {
-            window.alert(e);
+            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
         })
     }
 }

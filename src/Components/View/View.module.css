@@ -1,0 +1,88 @@
+.main {
+  display: grid;
+  place-items: center center;
+  margin-top: 10px;
+  font-family: "Poppins", sans-serif;
+}
+
+.card {
+  background-color: #2391e6;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(34, 60, 80, 0.42);
+}
+
+.container {
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.container img {
+  width: 100%;
+  display: block;
+  border-radius: 20px 20px 0 0;
+  min-width: 400px;
+  min-height: 400px;
+  max-width: 1000px;
+  max-height: 550px;
+}
+
+.details {
+  margin-top: -15px;
+  padding: 20px 10px;
+  text-align: left;
+  max-width: 1000px;
+  max-height: 400px;
+}
+
+.details h3 {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 10px 0 10px 0;
+}
+
+.details p {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.info {
+  display: grid;
+  grid-template-areas: "price count dateAdded";
+  grid-row: 1fr 1fr 1fr;
+  color: #ffffff;
+}
+
+.price {
+  grid-area: price;
+}
+
+.count {
+  grid-area: count;
+  text-align: center;
+}
+
+.dateAdded {
+  grid-area: dateAdded;
+  text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+  .info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .price {
+    text-align: center;
+  }
+
+  .count {
+    text-align: center;
+  }
+
+  .dateAdded {
+    text-align: center;
+  }
+}
