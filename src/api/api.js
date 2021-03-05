@@ -15,7 +15,6 @@ export const goodsApi = {
     },
     editGoods(goods) {
         return axios.post("http://localhost:8080/product/update/" + goods.id, goods);
-        //return axios.put("http://localhost:3001/Products/" + goods.id, goods);
     },
     getGoods(goodsId) {
         return axios.get("http://localhost:8080/product/get/" + goodsId);
