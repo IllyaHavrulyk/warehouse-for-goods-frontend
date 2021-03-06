@@ -4,7 +4,6 @@ import { Container, Row, Alert, Button } from "react-bootstrap";
 import TileList from "../Tiles/TileList";
 
 const Goods = ({ goods, deleteGoods, setGoodsView }) => {
-  debugger;
   return (
     <Container>
       <TileList goods={goods} deleteGoods={deleteGoods} />

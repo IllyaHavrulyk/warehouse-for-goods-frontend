@@ -5,21 +5,25 @@ import { Input, TextArea } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
 import style from './EditGoods.module.css';
 
-const EditGoods = ({ goods, editGoods }) => {
+const EditGoods = ({ goods, editGoods, isLoading }) => {
     const onSubmit = (value) => {
         value.id = goods.id
         editGoods(value);
     }
     return (
         <div>
-            <EditGoodsForm onSubmit={onSubmit} goods={goods} />
+            <EditGoodsForm
+                onSubmit={onSubmit}
+                goods={goods}
+                isLoading={isLoading}
+            />
         </div>
     )
 }
 
 export default EditGoods;
 
-const EditGoodsForm = ({ onSubmit, goods }) => {
+const EditGoodsForm = ({ onSubmit, goods, isLoading }) => {
     return (
         <Form onSubmit={onSubmit}>
             {({ handleSubmit }) => (
@@ -83,7 +87,7 @@ const EditGoodsForm = ({ onSubmit, goods }) => {
                         />
                     </div>
                     <div className={style.addButton}>
-                        <button>Edit</button>
+                        <button disabled={isLoading}>Edit</button>
                     </div>
                 </form>
             )}

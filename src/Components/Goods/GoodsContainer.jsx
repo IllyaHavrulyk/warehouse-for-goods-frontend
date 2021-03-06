@@ -23,7 +23,8 @@ class GoodsContainer extends React.Component {
             return (
                 <Preloader />
             )
-        } else if (this.props.isError) {
+        }
+        if (this.props.isError) {
             return (
                 <div>
                     <ErrorMessage error={this.props.error} setIsErrorEndError={this.props.setIsErrorEndError} />

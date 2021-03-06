@@ -5,7 +5,7 @@ import { Input, TextArea } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
 import style from './AddGoods.module.css';
 
-const AddGoods = ({ addGoods, isPutGoods }) => {
+const AddGoods = ({ addGoods, isPutGoods, isLoading }) => {
     const onSubmit = (value) => {
         addGoods(value);
     }
@@ -14,14 +14,14 @@ const AddGoods = ({ addGoods, isPutGoods }) => {
     }
     return (
         <div>
-            <AddGoodsForm onSubmit={onSubmit} />
+            <AddGoodsForm onSubmit={onSubmit} isLoading={isLoading} />
         </div>
     )
 }
 
 export default AddGoods;
 
-const AddGoodsForm = ({ onSubmit }) => {
+const AddGoodsForm = ({ onSubmit, isLoading }) => {
     return (
         <Form onSubmit={onSubmit}>
             {({ handleSubmit }) => (
@@ -85,7 +85,7 @@ const AddGoodsForm = ({ onSubmit }) => {
                         />
                     </div>
                     <div className={style.addButton}>
-                        <button>Add</button>
+                        <button disabled={isLoading}>Add</button>
                     </div>
                 </form>
             )}

@@ -90,41 +90,53 @@ export const requestGoods = () => {
 
 export const addGoods = (goods) => {
     return (dispatch) => {
+        dispatch(setIsLoading(true));
         goodsApi.putGoods(goods).then(response => {
             dispatch(putGoods(goods));
             dispatch(setIsPutGoods(true));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
+            dispatch(setIsErrorEndError(true, "error: failed add object"));
+        }).finally(() => {
+            dispatch(setIsLoading(false));
         })
     }
 }
 
 export const deleteGoods = (goodsId) => {
     return (dispatch) => {
+        dispatch(setIsLoading(true));
         goodsApi.deleteGoods(goodsId).then(response => {
             dispatch(deleteGoodsAC(goodsId));
         }).catch((e) => {
-            window.alert(e);
+            dispatch(setIsErrorEndError(true, "error: failed delete object"));
+        }).finally(() => {
+            dispatch(setIsLoading(false));
         })
     }
 }
 
 export const getGoods = (goodsId) => {
     return (dispatch) => {
+        dispatch(setIsLoading(true));
         goodsApi.getGoods(goodsId).then(response => {
             dispatch(getGoodsAC(response.data));
         }).catch((e) => {
-            window.alert(e);
+            dispatch(setIsErrorEndError(true, "error: failed get object"));
+        }).finally(() => {
+            dispatch(setIsLoading(false));
         })
     }
 }
 
 export const editGoods = (goods) => {
     return (dispatch) => {
+        dispatch(setIsLoading(true));
         goodsApi.editGoods(goods).then(response => {
             dispatch(setIsEditGoods(true));
         }).catch((e) => {
-            window.alert(e);
+            dispatch(setIsErrorEndError(true, "error: failed edit object"));
+        }).finally(() => {
+            dispatch(setIsLoading(false));
         })
     }
 }

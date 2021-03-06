@@ -14,7 +14,10 @@ class AddGoodsContainer extends React.Component {
         if (this.props.isError) {
             return (
                 <div>
-                    <ErrorMessage error={this.props.error} isError={this.props.isError} />
+                    <ErrorMessage
+                        error={this.props.error}
+                        setIsErrorEndError={this.props.setIsErrorEndError}
+                    />
                     <AddGoods {...this.props} />
                 </div>
             )
@@ -29,7 +32,8 @@ const mapStateToProps = (state) => {
     return {
         isPutGoods: state.goods.isPutGoods,
         error: state.goods.error,
-        isError: state.goods.isError
+        isError: state.goods.isError,
+        isLoading: state.goods.isLoading
     };
 }
 
