@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
+import withAuthRedirect from '../../hoc/withAuthRedirectAndError';
 import { getGoods, setError, setIsLoading } from '../../redux/viewReducer';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Preloader from '../Preloader/Preloader';
@@ -46,7 +47,8 @@ const mapDispatchToProps = (state) => {
 
 export default compose(
     connect(mapDispatchToProps, { getGoods, setIsLoading, setError }),
-    withRouter
+    withRouter,
+    withAuthRedirect
 )(ViewContainer)
 
 

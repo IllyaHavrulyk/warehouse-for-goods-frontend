@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { deleteGoods, requestGoods, setIsErrorEndError, setIsLoading } from '../../redux/goodsReducer';
+import withAuthRedirect from '../../hoc/withAuthRedirectAndError';
+import { deleteGoods, filterPrice, requestGoods, setIsErrorEndError, setIsLoading } from '../../redux/goodsReducer';
 import { setGoods } from '../../redux/viewReducer';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Preloader from '../Preloader/Preloader';
@@ -22,14 +23,6 @@ class GoodsContainer extends React.Component {
         if (this.props.isLoading) {
             return (
                 <Preloader />
-            )
-        }
-        if (this.props.isError) {
-            return (
-                <div>
-                    <ErrorMessage error={this.props.error} setIsErrorEndError={this.props.setIsErrorEndError} />
-                    <Goods {...this.props} setGoodsView={this.setGoodsView.bind(this)} />
-                </div>
             )
         }
         return (
@@ -52,7 +45,8 @@ export default compose(
         requestGoods,
         deleteGoods,
         setIsErrorEndError,
-        setGoods
+        setGoods,
     }),
-    withRouter
+    withRouter,
+    withAuthRedirect
 )(GoodsContainer);
