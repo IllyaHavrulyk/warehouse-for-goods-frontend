@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import withAuthRedirect from '../../hoc/withAuthRedirectAndError';
 import { addGoods, setIsErrorEndError, setIsPutGoods } from '../../redux/goodsReducer';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import AddGoods from './AddGoods';
@@ -39,6 +40,7 @@ const mapStateToProps = (state) => {
 
 export default compose(
     connect(mapStateToProps, { addGoods, setIsPutGoods, setIsErrorEndError }),
-    withRouter
+    withRouter,
+    withAuthRedirect
 )(AddGoodsContainer);
 

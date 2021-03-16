@@ -1,6 +1,6 @@
 import { goodsApi } from "../api/api";
 
-const INITIAL_GOODS = "warehouse/goods/INITIAL_GOODS";
+const SET_GOODS = "warehouse/goods/SET_GOODS";
 const ADD_GOODS = "warehouse/goods/ADD_GOODS";
 const SET_IS_PUT_GOODS = "warehouse/goods/SET_IS_PUT_GOODS";
 const DELETE_GOODS = "warehouse/goods/DELETE_GOODS";
@@ -21,7 +21,7 @@ const initialState = {
 
 const goodsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case INITIAL_GOODS: {
+        case SET_GOODS: {
             return {
                 ...state,
                 goods: action.goods,
@@ -77,7 +77,8 @@ export const requestGoods = () => {
     return (dispatch) => {
         dispatch(setIsLoading(true));
         goodsApi.initialGoods().then(response => {
-            dispatch(initialGoods(response.data));
+            dispatch(setGoods(response.data));
+
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed to get objects"));
         }).finally(() => {
@@ -141,10 +142,18 @@ export const editGoods = (goods) => {
     }
 }
 
+export const filterPrice = (minPrice, maxPrice) => {
+    return (dispatch) => {
+        goodsApi.filter(minPrice, maxPrice).then(response => {
+            dispatch(setGoods(response.data));
+        })
+    }
+}
+
 export default goodsReducer;
 
-export const initialGoods = (goods) => ({
-    type: INITIAL_GOODS,
+export const setGoods = (goods) => ({
+    type: SET_GOODS,
     goods
 })
 
