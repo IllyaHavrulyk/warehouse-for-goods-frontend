@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { logout, searchGoods } from '../../redux/goodsReducer';
+import { logout } from '../../redux/appReducer';
+import { searchGoods } from '../../redux/goodsReducer';
 import Header from './Header';
 
 const HeaderContainer = (props) => {

@@ -58,6 +58,14 @@ export const login = (userData) => {
     }
 }
 
+export const logout = () => {
+    return (dispatch) => {
+        goodsApi.logout().then(response => {
+            dispatch(setIsAuth(false));
+        })
+    }
+}
+
 export const setIsLoading = (isLoading) => ({
     type: SET_IS_LOADING,
     isLoading

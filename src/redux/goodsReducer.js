@@ -23,7 +23,7 @@ const initialState = {
     isError: false,
     error: null,
     isSearch: false,
-    isFilter: false
+    isFilter: false,
 }
 
 const goodsReducer = (state = initialState, action) => {
@@ -192,13 +192,6 @@ export const filterPrice = (minPrice, maxPrice) => {
     return (dispatch) => {
         goodsApi.filter(minPrice, maxPrice).then(response => {
             dispatch(filterPriceAC(response.data));
-        })
-    }
-}
-
-export const logout = () => {
-    return (dispatch) => {
-        goodsApi.logout().then(response => {
         })
     }
 }
