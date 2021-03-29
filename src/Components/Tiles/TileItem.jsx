@@ -9,11 +9,12 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from "@material-ui/core/Slide";
 import style from "./TileItem.module.css";
+import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Tiles = ({ goods, gridMarkup, deleteGoods, setGoodsView }) => {
+const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
     const [open, setOpen] = React.useState(false);
     const [itemIdToDelete, setItemIdToDelete] = React.useState(-1);
 
@@ -64,25 +65,12 @@ const Tiles = ({ goods, gridMarkup, deleteGoods, setGoodsView }) => {
                     </Col>
                 ))
             }
-            <Dialog
-                open={open}
-                TransitionComponent={Transition}
-                keepMounted
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-slide-title"
-                aria-describedby="alert-dialog-slide-description"
-            >
-                <DialogTitle id="alert-dialog-slide-title">{"You are sure you want to delete this item?"}</DialogTitle>
-                <DialogContent >
-                    <DialogContentText id="alert-dialog-slide-description">
-                        click "yes" to delete or "no" if you do not want to delete
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions >
-                    <Button onClick={handleClose} variant="outlined">No</Button>
-                    <Button onClick={handleDeleteAndClose} variant="primary" color="primary" >Yes</Button>
-                </DialogActions>
-            </Dialog>
+            {open &&
+                <ConfirmDelete
+                    handleClose={handleClose}
+                    open={open}
+                    handleDeleteAndClose={handleDeleteAndClose}
+                />}
 
         </CardGroup >
     )

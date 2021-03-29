@@ -1,35 +1,27 @@
 import React from 'react'
-import { Button } from 'react-bootstrap';
 import { Field, Form } from 'react-final-form';
 import { Input } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
-import { NavLink } from 'react-router-dom';
-import style from "./Login.module.css";
-const Login = ({ login }) => {
+import style from "./Registration.module.css";
+
+const Registration = ({ registration }) => {
     const onSubmit = (userData) => {
-        login(userData);
+        registration(userData.username, userData.password);
     }
     return (
-        <>
-            <div>
-                <LoginFrom onSubmit={onSubmit} />
-            </div>
-            <div className={style.registrationButton}>
-                <NavLink to="/registration">
-                    <Button>Registration</Button>
-                </NavLink>
-            </div>
-        </>
+        <RegistrationFrom onSubmit={onSubmit} />
     )
 }
-export default Login;
-const LoginFrom = ({ onSubmit }) => {
+
+export default Registration;
+
+const RegistrationFrom = ({ onSubmit }) => {
     return (
         <Form onSubmit={onSubmit}>
             {({ handleSubmit }) => (
                 <form className={style.box} onSubmit={handleSubmit}>
                     <div className={style.nameForm}>
-                        <h1>Login</h1>
+                        <h1>Registration</h1>
                     </div>
                     <div className={style.addGoodsField}>
                         <Field
@@ -43,7 +35,6 @@ const LoginFrom = ({ onSubmit }) => {
                     </div>
                     <div className={style.addGoodsField}>
                         <Field
-
                             name="password"
                             component={Input}
                             type="password"
@@ -54,7 +45,7 @@ const LoginFrom = ({ onSubmit }) => {
                         />
                     </div>
                     <div className={style.addButton}>
-                        <button>Auth</button>
+                        <button>Registration</button>
                     </div>
                 </form>
             )}

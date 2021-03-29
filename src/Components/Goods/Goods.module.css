@@ -1,4 +1,9 @@
-.filterButton button {
-  display: block;
+.filterButton {
+  display: flex;
+  flex-direction: row;
   margin-top: 5px;
+}
+
+.filterButton button:first-of-type {
+  margin-right: 5px;
 }

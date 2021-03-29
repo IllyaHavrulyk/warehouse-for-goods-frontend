@@ -1,0 +1,44 @@
+.card {
+  background: #ffffff;
+  box-shadow: 1px 7px 22px rgba(0, 0, 0, 0.25);
+  border-radius: 9px;
+  text-align: left;
+  margin-top: 40px;
+}
+
+.groupButton {
+  display: grid;
+  grid-template-areas: "edit view delete";
+  grid-template-rows: 1fr, 1fr, 1fr;
+}
+
+.view {
+  grid-area: view;
+}
+.view a button {
+  width: 100%;
+}
+.delete {
+  grid-area: delete;
+}
+.delete button {
+  width: 100%;
+}
+.edit {
+  grid-area: edit;
+}
+.edit a button {
+  width: 100%;
+}
+
+.description {
+  font-size: 16px;
+}
+
+.quantity {
+  font-size: 16px;
+}
+
+.price {
+  font-size: 13px;
+}

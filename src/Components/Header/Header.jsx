@@ -6,8 +6,15 @@ import WarehouseSvg from "../../assets/warehouse.svg";
 import HomeSvg from "../../assets/home.svg"
 import PlusSvg from "../../assets/plus.svg";
 import SearchSvg from "../../assets/search.svg";
+import style from "./Header.module.css";
 
-const Header = () => {
+const Header = ({ searchGoods, logout }) => {
+    const [searchValue, setSearchValue] = React.useState("");
+
+    const search = () => {
+        searchGoods(searchValue);
+    }
+
     return (
         <div>
             <Navbar style={{ backgroundColor: "#2391E6" }} variant="dark">
@@ -18,9 +25,16 @@ const Header = () => {
                 </Nav>
                 <Form inline>
                     <img src={SearchSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                    <Button variant="outline-light">Search</Button>
+                    <FormControl
+                        type="text"
+                        placeholder="Search"
+                        className="mr-sm-2"
+                        value={searchValue}
+                        onChange={(e) => { setSearchValue(e.target.value); }}
+                    />
+                    <Button variant="outline-light" onClick={() => { search() }}>Search</Button>
                 </Form>
+                <Button className={style.logoutButton} variant="danger" onClick={() => { logout() }}>Logout</Button>
             </Navbar>
         </div>
     )

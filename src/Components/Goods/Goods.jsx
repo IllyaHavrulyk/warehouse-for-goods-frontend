@@ -4,16 +4,26 @@ import { Container, Row, Alert, Button } from "react-bootstrap";
 import TileList from "../Tiles/TileList";
 import PriceFilterContainer from "../PriceFilter/PriceFilterContainer";
 import style from "./Goods.module.css";
+import FoundGoods from "../FoundGoods/FoundGoods";
 
-const Goods = ({ goods, deleteGoods, setGoodsView }) => {
+const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFilter }) => {
   const [isVisiblePriceFilter, setIsVisiblePriceFilter] = useState(false);
   const onClosePriceFilter = () => {
     setIsVisiblePriceFilter(false);
+  }
+
+  if (isSearch) {
+    return (
+      <FoundGoods deleteSearch={deleteSearch} deleteGoods={deleteGoods} foundGoods={goods} />
+    );
   }
   return (
     <Container>
       <div className={style.filterButton}>
         <Button onClick={() => { setIsVisiblePriceFilter(true) }} >filter</Button>
+        {isFilter &&
+          <Button onClick={() => { deleteFilter(); }} variant="danger">delete filter</Button>
+        }
       </div>
       {isVisiblePriceFilter &&
         <PriceFilterContainer
@@ -26,10 +36,8 @@ const Goods = ({ goods, deleteGoods, setGoodsView }) => {
           goods={goods.slice(goods.length - (goods.length % 4), goods.length)}
           gridMarkup={"remaining"}
           deleteGoods={deleteGoods}
-          setGoodsView={setGoodsView}
         />
       </Row>
-
     </Container>
   );
 };

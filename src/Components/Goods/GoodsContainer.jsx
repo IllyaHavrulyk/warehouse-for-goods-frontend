@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import withAuthRedirect from '../../hoc/withAuthRedirectAndError';
-import { deleteGoods, filterPrice, requestGoods, setIsErrorEndError, setIsLoading } from '../../redux/goodsReducer';
+import { deleteFilter, deleteGoods, deleteSearch, filterPrice, requestGoods, setIsErrorEndError, setIsLoading } from '../../redux/goodsReducer';
 import { setGoods } from '../../redux/viewReducer';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Preloader from '../Preloader/Preloader';
@@ -12,7 +12,9 @@ import Goods from './Goods';
 
 class GoodsContainer extends React.Component {
     componentDidMount() {
-        this.props.requestGoods();
+        if (!this.props.isSearch && !this.props.isFilter) {
+            this.props.requestGoods();
+        }
     }
 
     setGoodsView(goods) {
@@ -26,7 +28,7 @@ class GoodsContainer extends React.Component {
             )
         }
         return (
-            <Goods {...this.props} setGoodsView={this.setGoodsView.bind(this)} />
+            <Goods {...this.props} />
         );
     }
 }
@@ -36,7 +38,9 @@ const mapStateToProps = (state) => {
         goods: state.goods.goods,
         isLoading: state.goods.isLoading,
         isError: state.goods.isError,
-        error: state.goods.error
+        error: state.goods.error,
+        isSearch: state.goods.isSearch,
+        isFilter: state.goods.isFilter
     }
 }
 
@@ -46,6 +50,8 @@ export default compose(
         deleteGoods,
         setIsErrorEndError,
         setGoods,
+        deleteSearch,
+        deleteFilter
     }),
     withRouter,
     withAuthRedirect

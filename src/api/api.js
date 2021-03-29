@@ -30,11 +30,20 @@ export const goodsApi = {
         return instance.get(`/product/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`);
     },
     isLogin() {
-        return instance.get(`http://localhost:8080/login`)
+        return instance.get(`/login`)
     },
     login(userData) {
         return axios.get(`http://localhost:8080/login`,
             { headers: { authorization: 'Basic ' + window.btoa(userData.username + ":" + userData.password) } }
         );
+    },
+    searchGoods(goodsData) {
+        return axios.get("http://localhost:8080/product/search/" + goodsData);
+    },
+    registration(login, password) {
+        return instance.post("/registration", { username: login, password });
+    },
+    logout() {
+        return instance.post("/logout");
     }
 }

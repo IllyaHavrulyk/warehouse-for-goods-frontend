@@ -1,8 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-import axios from "axios";
-import Header from "./Components/Header/Header";
 import { Redirect, Route, withRouter } from 'react-router-dom';
 import GoodsContainer from "./Components/Goods/GoodsContainer";
 import AddGoodsContainer from "./Components/AddGoods/AddGoodsContainer";
@@ -14,6 +12,8 @@ import { initialApp } from "./redux/appReducer";
 import Preloader from "./Components/Preloader/Preloader";
 import { compose } from "redux";
 import LoginContainer from "./Components/Login/LoginContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
+import RegistrationContainer from "./Components/Registration/RegistrationContainer";
 
 
 class App extends React.Component {
@@ -26,7 +26,7 @@ class App extends React.Component {
     }
     return (
       <div className="App">
-        <Header />
+        {this.props.isAuth && <HeaderContainer />}
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
@@ -45,6 +45,9 @@ class App extends React.Component {
         <Route path="/login">
           <LoginContainer />
         </Route>
+        <Route path="/registration">
+          <RegistrationContainer />
+        </Route>
       </div>
     );
   }
@@ -52,7 +55,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.app.isLoading
+    isLoading: state.app.isLoading,
+    isAuth: state.app.isAuth
   }
 }
 
