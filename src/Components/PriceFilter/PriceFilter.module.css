@@ -11,9 +11,9 @@
   border-radius: 5px;
   background: rgba(12, 102, 192, 1);
   text-align: center;
-  -webkit-box-shadow: -2px 2px 16px 14px rgba(34, 60, 80, 0.42);
-  -moz-box-shadow: -2px 2px 16px 14px rgba(34, 60, 80, 0.42);
-  box-shadow: -2px 2px 16px 14px rgba(34, 60, 80, 0.42);
+  -webkit-box-shadow: -2px 15px 20px 10px rgba(34, 60, 80, 0.42);
+  -moz-box-shadow: -2px 15px 20px 10px rgba(34, 60, 80, 0.42);
+  box-shadow: -2px 15px 20px 10px rgba(34, 60, 80, 0.42);
 }
 
 .box div {
@@ -74,4 +74,16 @@
 
 .addGoodsField {
   margin-top: 10px;
+}
+
+.searchInput {
+  width: auto;
+}
+
+.closeButton {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
 }

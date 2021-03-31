@@ -11,7 +11,7 @@ const PriceFilter = ({ onClosePriceFilter, filterPrice }) => {
     }
     return (
         <div className={style.priceFilter}>
-            <button onClick={onClosePriceFilter}>close</button>
+            <button onClick={onClosePriceFilter} className={style.closeButton}>close</button>
             <PriceFilterForm onSubmit={onSubmit} />
         </div>
     )

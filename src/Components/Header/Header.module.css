@@ -5,3 +5,22 @@ button .btn .btn-danger {
 .logoutButton {
   margin-left: 5px;
 }
+
+@media screen and (max-width: 992px) {
+  .navbarBrand {
+    display: none;
+  }
+
+  .searchSvg {
+    height: 0;
+    width: 0;
+  }
+
+  .searchBtn {
+    display: none;
+  }
+
+  .logoutButton {
+    width: 100%;
+  }
+}
