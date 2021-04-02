@@ -14,7 +14,7 @@ import { compose } from "redux";
 import LoginContainer from "./Components/Login/LoginContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import RegistrationContainer from "./Components/Registration/RegistrationContainer";
-
+import StatsContainer from './Components/Stats/StatsContainer';
 
 class App extends React.Component {
   componentDidMount() {
@@ -44,6 +44,9 @@ class App extends React.Component {
         </Route>
         <Route path="/login">
           <LoginContainer />
+        </Route>
+        <Route path="/stats">
+          <StatsContainer />
         </Route>
         <Route path="/registration">
           <RegistrationContainer />
