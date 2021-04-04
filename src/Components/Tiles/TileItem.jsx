@@ -2,21 +2,21 @@ import { Button, Card, CardGroup, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from 'react-router-dom';
 import React from "react";
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import plus from "../../assets/plusQuantity.svg";
+import minus from "../../assets/minus.svg"
 import Slide from "@material-ui/core/Slide";
 import style from "./TileItem.module.css";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
+import ChangeQuantity from "../ChangeQuantity/ChangeQuantity";
+
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
+const Tiles = ({ goods, gridMarkup, deleteGoods, changeQuantityForGoods, warehouseId }) => {
     const [open, setOpen] = React.useState(false);
     const [itemIdToDelete, setItemIdToDelete] = React.useState(-1);
+    const [changeQuantity, setChangeQuantity] = React.useState({ name: null, isOpenWindowChange: false, idItemForChangeQuantity: null });
 
     const handleDeleteAndClose = () => {
         setOpen(false);
@@ -29,6 +29,15 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
         setItemIdToDelete(0);
         setOpen(false);
     };
+
+    const openWindowChangeQuantity = (name, id) => {
+        setChangeQuantity({ name, isOpenWindowChange: true, idItemForChangeQuantity: id });
+    }
+
+    const onChangeQuantity = (quantity) => {
+        changeQuantityForGoods(changeQuantity.idItemForChangeQuantity, changeQuantity.name, quantity);
+        setChangeQuantity({ name: null, isOpenWindowChange: false, idItemForChangeQuantity: null });
+    }
 
     return (
         <CardGroup style={{ margin: gridMarkup === "remaining" ? " auto" : null }} >
@@ -45,9 +54,31 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                                 </Card.Text>
 
                                 <Card.Text style={{ opacity: 0.8 }}>
-                                    Date added : {item.dateAdded}
+                                    Date added : {item.dateAdded.slice(0, 10)}
                                 </Card.Text>
-                                <NavLink to={"/edit/" + item.id}>
+                                <Card.Text style={{ opacity: 0.8 }}>
+                                    Quantity: {item.quantity}
+                                    <img onClick={() => {
+                                        openWindowChangeQuantity("plus", item.id);
+                                    }}
+                                        className={style.plus}
+                                        src={plus}
+                                        alt="plus"
+                                    />
+                                    <img onClick={() => {
+                                        openWindowChangeQuantity("minus", item.id);
+                                    }}
+                                        className={style.minus}
+                                        src={minus}
+                                        alt="minus"
+                                    />
+                                </Card.Text>
+                                {
+                                    changeQuantity.isOpenWindowChange &&
+                                    changeQuantity.idItemForChangeQuantity === item.id &&
+                                    <ChangeQuantity action={onChangeQuantity} setChangeQuantity={setChangeQuantity} />
+                                }
+                                <NavLink to={`/warehouse/${warehouseId}/edit/${item.id}`}>
                                     <Button variant="success" style={{ margin: 10 + "px" }}>Edit </Button>
                                 </NavLink>
                                 <Button
@@ -58,7 +89,7 @@ const Tiles = ({ goods, gridMarkup, deleteGoods }) => {
                                         setOpen(true);
                                     }}> Delete</Button>
                             </Card.Body>
-                            <NavLink className={style.view} to={"/view/" + item.id}>
+                            <NavLink className={style.view} to={`/warehouse/${warehouseId}/view/${item.id}`}>
                                 <Button variant="primary">View </Button>
                             </NavLink>
                         </Card>

@@ -14,6 +14,8 @@ import { compose } from "redux";
 import LoginContainer from "./Components/Login/LoginContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import RegistrationContainer from "./Components/Registration/RegistrationContainer";
+import WarehousesContainer from "./Components/Warehouses/WarehousesContainer";
+
 import StatsContainer from './Components/Stats/StatsContainer';
 
 class App extends React.Component {
@@ -30,16 +32,19 @@ class App extends React.Component {
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
-        <Route path="/home">
+        <Route exact path="/home">
+          <WarehousesContainer />
+        </Route>
+        <Route path="/warehouse/:warehouseId/home">
           <GoodsContainer />
         </Route>
-        <Route path="/add">
+        <Route path="/warehouse/:warehouseId/add">
           <AddGoodsContainer />
         </Route>
-        <Route path="/edit/:goodsId?">
+        <Route path="/warehouse/:warehouseId/edit/:goodsId?">
           <EditGoodsContainer />
         </Route>
-        <Route path="/view/:goodsId?">
+        <Route path="/warehouse/:warehouseId/view/:goodsId?">
           <ViewContainer />
         </Route>
         <Route path="/login">

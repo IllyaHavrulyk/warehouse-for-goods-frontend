@@ -68,7 +68,6 @@ const goodsReducer = (state = initialState, action) => {
                 ...state,
                 isEditGoods: true,
                 goods: state.goods.map(item => {
-                    debugger;
                     if (item.id === action.goods.id) {
                         return action.goods;
                     }
@@ -121,10 +120,10 @@ const goodsReducer = (state = initialState, action) => {
     }
 }
 
-export const requestGoods = () => {
+export const requestGoods = (warehouseId) => {
     return (dispatch) => {
         dispatch(setIsLoading(true));
-        goodsApi.initialGoods().then(response => {
+        goodsApi.initialGoods(warehouseId).then(response => {
             dispatch(setGoods(response.data));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed to get objects"));
@@ -136,11 +135,11 @@ export const requestGoods = () => {
 }
 
 
-export const addGoods = (goods) => {
+export const addGoods = (goods, warehouseId) => {
     return (dispatch) => {
         dispatch(setIsLoading(true));
-        goodsApi.putGoods(goods).then(response => {
-            dispatch(putGoods(goods));
+        goodsApi.putGoods(goods, warehouseId).then(response => {
+            dispatch(putGoods(response.data));
             dispatch(setIsPutGoods(true));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed add object"));

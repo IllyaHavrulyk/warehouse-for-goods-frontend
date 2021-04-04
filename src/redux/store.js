@@ -4,6 +4,7 @@ import thunkMiddleWare from "redux-thunk";
 import viewReducer from "./viewReducer";
 import appReducer from "./appReducer";
 import registrationReducer from "./registrationReducer";
+import warehouseReducer from "./warehouseReducer";
 
 
 let reducer = combineReducers({
@@ -11,6 +12,7 @@ let reducer = combineReducers({
     view: viewReducer,
     app: appReducer,
     registration: registrationReducer,
+    warehouse: warehouseReducer
 })
 
 let store = createStore(reducer, applyMiddleware(thunkMiddleWare));

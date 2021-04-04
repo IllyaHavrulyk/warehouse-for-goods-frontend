@@ -6,7 +6,7 @@ import PriceFilterContainer from "../PriceFilter/PriceFilterContainer";
 import style from "./Goods.module.css";
 import FoundGoods from "../FoundGoods/FoundGoods";
 
-const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFilter }) => {
+const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFilter, changeQuantityForGoods, warehouseId }) => {
   const [isVisiblePriceFilter, setIsVisiblePriceFilter] = useState(false);
   const onClosePriceFilter = () => {
     setIsVisiblePriceFilter(false);
@@ -14,7 +14,12 @@ const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFil
 
   if (isSearch) {
     return (
-      <FoundGoods deleteSearch={deleteSearch} deleteGoods={deleteGoods} foundGoods={goods} />
+      <FoundGoods
+        changeQuantityForGoods={changeQuantityForGoods}
+        deleteSearch={deleteSearch}
+        deleteGoods={deleteGoods}
+        foundGoods={goods}
+      />
     );
   }
   return (
@@ -30,9 +35,16 @@ const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFil
           onClosePriceFilter={onClosePriceFilter}
         />
       }
-      <TileList goods={goods} deleteGoods={deleteGoods} />
+      <TileList
+        warehouseId={warehouseId}
+        changeQuantityForGoods={changeQuantityForGoods}
+        goods={goods}
+        deleteGoods={deleteGoods}
+      />
       <Row>
         <TileItem
+          warehouseId={warehouseId}
+          changeQuantityForGoods={changeQuantityForGoods}
           goods={goods.slice(goods.length - (goods.length % 4), goods.length)}
           gridMarkup={"remaining"}
           deleteGoods={deleteGoods}

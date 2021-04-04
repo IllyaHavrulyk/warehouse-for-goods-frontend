@@ -5,12 +5,12 @@ import { Input, TextArea } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
 import style from './AddGoods.module.css';
 
-const AddGoods = ({ addGoods, isPutGoods, isLoading }) => {
+const AddGoods = ({ addGoods, isPutGoods, isLoading, warehouseId }) => {
     const onSubmit = (value) => {
-        addGoods(value);
+        addGoods(value, warehouseId);
     }
     if (isPutGoods) {
-        return <Redirect to="/home" />
+        return <Redirect to={`/warehouse/${warehouseId}/home`} />
     }
     return (
         <div>

@@ -1,18 +1,19 @@
-import { ButtonBase, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
-import transitions from '@material-ui/core/styles/transitions';
 import React from 'react'
 import { Button, Card, CardGroup, Col, Container, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import ConfirmDelete from '../ConfirmDelete/ConfirmDelete';
 import style from './ItemFoundGoods.module.css';
+import plus from "../../assets/plusQuantity.svg";
+import minus from "../../assets/minus.svg";
+import ChangeQuantity from "../ChangeQuantity/ChangeQuantity";
 
-const ItemFoundGoods = ({ goods, deleteGoods, deleteSearch }) => {
+const ItemFoundGoods = ({ goods, deleteGoods, changeQuantityForGoods }) => {
     const [open, setOpen] = React.useState(false);
     const [itemIdToDelete, setItemIdToDelete] = React.useState(-1);
+    const [changeQuantity, setChangeQuantity] = React.useState({ name: null, isOpenWindowChange: false, idItemForChangeQuantity: null });
 
     const handleDeleteAndClose = () => {
         setOpen(false);
-        debugger;
         let tempId = itemIdToDelete;
         setItemIdToDelete(-1);
         deleteGoods(tempId);
@@ -22,6 +23,14 @@ const ItemFoundGoods = ({ goods, deleteGoods, deleteSearch }) => {
         setItemIdToDelete(0);
         setOpen(false);
     };
+    const openWindowChangeQuantity = (name, id) => {
+        setChangeQuantity({ name, isOpenWindowChange: true, idItemForChangeQuantity: id });
+    }
+
+    const onChangeQuantity = (quantity) => {
+        changeQuantityForGoods(changeQuantity.idItemForChangeQuantity, changeQuantity.name, quantity);
+        setChangeQuantity({ name: null, isOpenWindowChange: false, idItemForChangeQuantity: null });
+    }
 
     return (
         <Container>
@@ -30,12 +39,32 @@ const ItemFoundGoods = ({ goods, deleteGoods, deleteSearch }) => {
                     <Card.Body >
                         <Card.Title >{goods.name}</Card.Title>
                         <Card.Text>
-                            <p className={style.description}>
+                            <span className={style.description}>
                                 {goods.description.length > 200 ? goods.description.slice(0, 200) + "..." : goods.description}
-                            </p>
-                            <p className={style.quantity}>Quantity :{goods.quantity}</p>
-                            <p className={style.price}>Price : {goods.price}</p>
+                            </span>
+                            <span className={style.quantity}>Quantity :{goods.quantity}
+                                <img onClick={() => {
+                                    openWindowChangeQuantity("plus", goods.id);
+                                }}
+                                    className={style.plus}
+                                    src={plus}
+                                    alt="plus"
+                                />
+                                <img onClick={() => {
+                                    openWindowChangeQuantity("minus", goods.id);
+                                }}
+                                    className={style.minus}
+                                    src={minus}
+                                    alt="minus"
+                                />
+                            </span>
+                            <span className={style.price}>Price : {goods.price}</span>
                         </Card.Text>
+                        {
+                            changeQuantity.isOpenWindowChange &&
+                            changeQuantity.idItemForChangeQuantity === goods.id &&
+                            <ChangeQuantity action={onChangeQuantity} setChangeQuantity={setChangeQuantity} />
+                        }
                     </Card.Body>
                     <div className={style.groupButton}>
                         <div className={style.edit}>

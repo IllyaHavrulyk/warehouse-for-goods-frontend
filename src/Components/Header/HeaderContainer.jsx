@@ -6,12 +6,14 @@ import Header from './Header';
 
 const HeaderContainer = (props) => {
     return (
-        <Header searchGoods={props.searchGoods} logout={props.logout} />
+        <Header searchGoods={props.searchGoods} logout={props.logout} warehouseId={props.warehouseId} />
     )
 }
 
 const mapDispatchToProps = (state) => {
-    return {}
+    return {
+        warehouseId: state.warehouse.activeWarehouseId
+    }
 }
 
 export default connect(mapDispatchToProps, { searchGoods, logout })(HeaderContainer);
