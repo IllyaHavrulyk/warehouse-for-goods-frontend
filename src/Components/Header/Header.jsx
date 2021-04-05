@@ -30,7 +30,6 @@ const Header = ({ searchGoods, logout, warehouseId }) => {
                     <Nav className="mr-auto">
                         <Nav.Link href="/home"><img src={HomeSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} /> Home</Nav.Link>
                         <Nav.Link href={`/warehouse/${warehouseId}/add`}><img src={PlusSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />Add goods</Nav.Link>
-                        <Nav.Link href="/add"><img src={PlusSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />Add goods</Nav.Link>
                         <Nav.Link href="/stats"><img src={StatsSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />Stats</Nav.Link>
                     </Nav>
                     <Form inline onSubmit={handleSubmit}>
