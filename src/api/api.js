@@ -2,7 +2,8 @@ import axios from "axios";
 
 let instance = axios.create({
     withCredentials: true,
-    baseURL: "http://localhost:8080"
+    baseURL: "http://localhost:8080",
+    redirect: "error"
 });
 
 export const goodsApi = {
@@ -10,8 +11,8 @@ export const goodsApi = {
     initialGoods() {
         return axios.get("http://localhost:8080/product/list", {
             headers: {
-                authorization: 'Basic ' + window.btoa("user123" + ":" + "user123"),
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
 
         });
@@ -20,7 +21,8 @@ export const goodsApi = {
     putGoods(data) {
         return instance.post("/product/save", data, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         });
         //return axios.post("http://localhost:3001/Products", data);
@@ -28,7 +30,8 @@ export const goodsApi = {
     deleteGoods(goodsId) {
         return instance.delete("/product/delete/" + goodsId, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         });
         //return axios.delete("http://localhost:3001/Products/" + goodsId);
@@ -36,14 +39,16 @@ export const goodsApi = {
     editGoods(goods) {
         return instance.post("/product/update/" + goods.id, goods, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         });
     },
     getGoods(goodsId) {
         return instance.get("/product/get/" + goodsId, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         });
         //return axios.get("http://localhost:3001/Products/" + goodsId);
@@ -51,40 +56,45 @@ export const goodsApi = {
     filter(minPrice, maxPrice) {
         return instance.get(`/product/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         });
     },
     isLogin() {
         return axios.get(`http://localhost:8080/login`, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         })
     },
     login(userData) {
+        localStorage.setItem("userData", window.btoa(userData.username + ":" + userData.password))
         return axios.get(`http://localhost:8080/login`,
-            { headers: { authorization: 'Basic ' + window.btoa(userData.username + ":" + userData.password), "Access-Control-Allow-Origin": "http://localhost:3000" } }
+            { headers: { authorization: 'Basic ' + localStorage.getItem("userData"), "Access-Control-Allow-Origin": "http://localhost:3000" } }
         );
     },
     searchGoods(goodsData) {
         return axios.get("http://localhost:8080/product/search/" + goodsData, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
+                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         });
     },
     registration(login, password) {
         return instance.post("/registration", { username: login, password }, {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
             }
         });
     },
     logout() {
+        localStorage.removeItem("userData");
         return instance.post("/logout", {
             headers: {
-                "Access-Control-Allow-Origin": "http://localhost:3000"
+                "Access-Control-Allow-Origin": "http://localhost:3000",
             }
         });
     }
