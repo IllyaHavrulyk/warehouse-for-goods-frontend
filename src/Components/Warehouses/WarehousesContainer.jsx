@@ -25,7 +25,7 @@ class WarehousesContainer extends React.Component {
 
 const mapDispatchToProps = (state) => {
     return {
-        warehouses: state.warehouse.warehouses
+        warehouses: state.warehouse.warehouses,
     }
 }
 export default compose(

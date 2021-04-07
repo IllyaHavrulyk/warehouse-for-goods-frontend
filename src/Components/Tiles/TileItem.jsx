@@ -22,7 +22,7 @@ const Tiles = ({ goods, gridMarkup, deleteGoods, changeQuantityForGoods, warehou
         setOpen(false);
         let tempId = itemIdToDelete;
         setItemIdToDelete(-1);
-        deleteGoods(tempId);
+        deleteGoods(tempId, warehouseId);
     }
 
     const handleClose = () => {

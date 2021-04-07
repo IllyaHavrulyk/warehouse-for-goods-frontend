@@ -12,7 +12,7 @@ const HeaderContainer = (props) => {
 
 const mapDispatchToProps = (state) => {
     return {
-        warehouseId: state.warehouse.activeWarehouseId
+        warehouseId: state.warehouse.activeWarehouseId,
     }
 }
 

@@ -5,7 +5,7 @@ import { Input } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
 import { NavLink } from 'react-router-dom';
 import style from "./Login.module.css";
-const Login = ({ login }) => {
+const Login = ({ login, isLoading }) => {
     const onSubmit = (userData) => {
         login(userData);
     }
@@ -16,7 +16,7 @@ const Login = ({ login }) => {
             </div>
             <div className={style.registrationButton}>
                 <NavLink to="/registration">
-                    <Button>Registration</Button>
+                    <Button disabled={isLoading}>Registration</Button>
                 </NavLink>
             </div>
         </>

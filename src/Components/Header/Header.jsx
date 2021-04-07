@@ -13,7 +13,7 @@ const Header = ({ searchGoods, logout, warehouseId }) => {
     const [searchValue, setSearchValue] = React.useState("");
 
     const search = () => {
-        searchGoods(searchValue);
+        searchGoods(searchValue, warehouseId);
     }
 
     const handleSubmit = event => {
@@ -29,22 +29,28 @@ const Header = ({ searchGoods, logout, warehouseId }) => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Nav.Link href="/home"><img src={HomeSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} /> Home</Nav.Link>
-                        <Nav.Link href={`/warehouse/${warehouseId}/add`}><img src={PlusSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />Add goods</Nav.Link>
+                        {
+                            warehouseId !== null &&
+                            <Nav.Link href={`/warehouse/${warehouseId}/add`}><img src={PlusSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />Add goods</Nav.Link>
+                        }
                         <Nav.Link href="/stats"><img src={StatsSvg} width="20" height="20" className="d-inline-block" style={{ marginRight: 15 + "px" }} />Stats</Nav.Link>
                     </Nav>
-                    <Form inline onSubmit={handleSubmit}>
-                        <img src={SearchSvg} width="20" height="20" className={`d-inline-block ${style.searchSvg}`} style={{ marginRight: 15 + "px" }} />
-                        <FormControl
-                            type="text"
-                            placeholder="Search"
-                            className={`mr-sm-2 ${style.searchInput}`}
-                            value={searchValue}
-                            onChange={(e) => {
-                                setSearchValue(e.target.value);
-                            }}
-                        />
-                        <Button variant="outline-light" onClick={(e) => { e.preventDefault(); search() }} className={style.searchBtn}>Search</Button>
-                    </Form>
+                    {
+                        warehouseId !== null &&
+                        <Form inline onSubmit={handleSubmit}>
+                            <img src={SearchSvg} width="20" height="20" className={`d-inline-block ${style.searchSvg}`} style={{ marginRight: 15 + "px" }} />
+                            <FormControl
+                                type="text"
+                                placeholder="Search"
+                                className={`mr-sm-2 ${style.searchInput}`}
+                                value={searchValue}
+                                onChange={(e) => {
+                                    setSearchValue(e.target.value);
+                                }}
+                            />
+                            <Button variant="outline-light" onClick={(e) => { e.preventDefault(); search() }} className={style.searchBtn}>Search</Button>
+                        </Form>
+                    }
                     <Button className={style.logoutButton} variant="danger" onClick={() => { logout() }}>Logout</Button>
                 </Navbar.Collapse>
 

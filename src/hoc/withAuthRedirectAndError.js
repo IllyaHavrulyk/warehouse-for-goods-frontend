@@ -18,8 +18,8 @@ const withAuthRedirect = (Component) => {
         if (isError) {
             return (
                 <div>
-                    <ErrorMessage error={error} setIsErrorEndError={setIsErrorEndError} />
                     <Component {...restProps} />
+                    <ErrorMessage error={error} setIsErrorEndError={setIsErrorEndError} />
                 </div>
             )
         }

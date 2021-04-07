@@ -4,10 +4,10 @@ import { Input, InputForFilter } from '../common/FormControls/FormsControls';
 import { Required } from '../utils/validators/validators';
 import style from './PriceFilter.module.css';
 
-const PriceFilter = ({ onClosePriceFilter, filterPrice }) => {
+const PriceFilter = ({ onClosePriceFilter, filterPrice, warehouseId }) => {
     const onSubmit = (value) => {
         onClosePriceFilter(true);
-        filterPrice(value.minPrice, value.maxPrice);
+        filterPrice(value.minPrice, value.maxPrice, warehouseId);
     }
     return (
         <div className={style.priceFilter}>

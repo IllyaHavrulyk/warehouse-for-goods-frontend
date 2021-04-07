@@ -12,6 +12,10 @@ const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFil
     setIsVisiblePriceFilter(false);
   }
 
+  const onDeleteFilter = () => {
+    deleteFilter(warehouseId);
+  }
+
   if (isSearch) {
     return (
       <FoundGoods
@@ -19,6 +23,7 @@ const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFil
         deleteSearch={deleteSearch}
         deleteGoods={deleteGoods}
         foundGoods={goods}
+        warehouseId={warehouseId}
       />
     );
   }
@@ -27,12 +32,13 @@ const Goods = ({ goods, deleteGoods, isSearch, isFilter, deleteSearch, deleteFil
       <div className={style.filterButton}>
         <Button onClick={() => { setIsVisiblePriceFilter(true) }} >filter</Button>
         {isFilter &&
-          <Button onClick={() => { deleteFilter(); }} variant="danger">delete filter</Button>
+          <Button onClick={() => { onDeleteFilter(); }} variant="danger">delete filter</Button>
         }
       </div>
       {isVisiblePriceFilter &&
         <PriceFilterContainer
           onClosePriceFilter={onClosePriceFilter}
+          warehouseId={warehouseId}
         />
       }
       <TileList

@@ -1,0 +1,80 @@
+.openAddWarehouseWindow {
+  margin-top: 10px;
+}
+
+.addWarehouse {
+}
+
+.addWarehouseWindow {
+  position: absolute;
+  z-index: 1;
+  width: 180px;
+  padding: 10px;
+  border: 2px solid #2391e6;
+  border-radius: 5px;
+  background: rgba(12, 102, 192, 1);
+  text-align: center;
+  -webkit-box-shadow: -2px 15px 20px 10px rgba(34, 60, 80, 0.42);
+  -moz-box-shadow: -2px 15px 20px 10px rgba(34, 60, 80, 0.42);
+  box-shadow: -2px 15px 20px 10px rgba(34, 60, 80, 0.42);
+  left: 50%;
+  transform: translate(-30%, -50%);
+  top: 170px;
+}
+
+.addWarehouseWindow h1 {
+  color: white;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.addButton button {
+  border: 0;
+  background: none;
+  display: block;
+  margin: auto;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 4px 10px;
+  outline: none;
+  color: white;
+  border-radius: 10px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.addButton button:hover {
+  background: #2ecc71;
+}
+
+.addButton button:disabled {
+  background: #9e9e9e;
+}
+
+.searchInput {
+  width: auto;
+}
+
+.closeButton {
+  position: absolute;
+  margin-left: -102px;
+  margin-top: -27px;
+  width: 25px;
+}
+
+.warehouseName input {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 100%;
+  height: 10px;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  outline: none;
+}

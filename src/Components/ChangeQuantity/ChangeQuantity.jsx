@@ -18,11 +18,10 @@ const ChangeQuantity = ({ action, setChangeQuantity }) => {
             <div className={style.inputChangeQuantity}>
                 <input value={quantity} onChange={(e) => { setQuantity(e.target.value) }} />
             </div>
-            <div className={style.addButton}>
+            <div className={style.editQuantity}>
                 <button onClick={() => {
                     action(quantity);
                 }}
-                    className={style.addButton}
                 >Enter</button>
             </div>
         </div>

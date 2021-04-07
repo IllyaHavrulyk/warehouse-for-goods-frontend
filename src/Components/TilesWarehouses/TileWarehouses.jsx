@@ -2,12 +2,9 @@ import { Button, Card, CardGroup, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { NavLink } from 'react-router-dom';
 import React from "react";
-import plus from "../../assets/plusQuantity.svg";
-import minus from "../../assets/minus.svg"
 import Slide from "@material-ui/core/Slide";
 import style from "./TileWarehouse.module.css";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
-import ChangeQuantity from "../ChangeQuantity/ChangeQuantity";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -38,9 +35,6 @@ const TilesWarehouses = ({ warehouses, gridMarkup, deleteWarehouse }) => {
                             {/* <Card.Img variant="top" src={item.imgUrl} style={{ maxWidth: 25 + "%", height: "auto", margin: 0 + " auto" }} /> */}
                             <Card.Body >
                                 <Card.Title >{item.name}</Card.Title>
-                                <NavLink to={"/edit/" + item.id}>
-                                    <Button variant="success" style={{ margin: 10 + "px" }}>Edit </Button>
-                                </NavLink>
                                 <Button
                                     variant="danger"
                                     style={{ margin: 10 + "px" }}
@@ -49,8 +43,8 @@ const TilesWarehouses = ({ warehouses, gridMarkup, deleteWarehouse }) => {
                                         setOpen(true);
                                     }}> Delete</Button>
                             </Card.Body>
-                            <NavLink to={`/warehouse/${item.id}/home`}>
-                                <Button variant="primary">View </Button>
+                            <NavLink className={style.open} to={`/warehouse/${item.id}/home`}>
+                                <Button variant="primary">Open</Button>
                             </NavLink>
                         </Card>
                     </Col>

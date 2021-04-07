@@ -122,13 +122,13 @@ const goodsReducer = (state = initialState, action) => {
 
 export const requestGoods = (warehouseId) => {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
+        dispatch(setIsLoadingGoods(true));
         goodsApi.initialGoods(warehouseId).then(response => {
             dispatch(setGoods(response.data));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed to get objects"));
         }).finally(() => {
-            dispatch(setIsLoading(false));
+            dispatch(setIsLoadingGoods(false));
         })
 
     }
@@ -137,94 +137,94 @@ export const requestGoods = (warehouseId) => {
 
 export const addGoods = (goods, warehouseId) => {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
+        dispatch(setIsLoadingGoods(true));
         goodsApi.putGoods(goods, warehouseId).then(response => {
             dispatch(putGoods(response.data));
             dispatch(setIsPutGoods(true));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed add object"));
         }).finally(() => {
-            dispatch(setIsLoading(false));
+            dispatch(setIsLoadingGoods(false));
         })
     }
 }
-export const deleteGoods = (goodsId) => {
+export const deleteGoods = (goodsId, warehouseId) => {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
-        goodsApi.deleteGoods(goodsId).then(response => {
+        dispatch(setIsLoadingGoods(true));
+        goodsApi.deleteGoods(goodsId, warehouseId).then(response => {
             dispatch(deleteGoodsAC(goodsId));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed delete object"));
         }).finally(() => {
-            dispatch(setIsLoading(false));
+            dispatch(setIsLoadingGoods(false));
         })
     }
 }
 
 export const getGoods = (goodsId) => {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
+        dispatch(setIsLoadingGoods(true));
         goodsApi.getGoods(goodsId).then(response => {
             dispatch(getGoodsAC(response.data));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed get object"));
         }).finally(() => {
-            dispatch(setIsLoading(false));
+            dispatch(setIsLoadingGoods(false));
         })
     }
 }
 
 export const editGoods = (goods) => {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
+        dispatch(setIsLoadingGoods(true));
         goodsApi.editGoods(goods).then(response => {
             dispatch(editGoodsAC(response.data));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed edit object"));
         }).finally(() => {
-            dispatch(setIsLoading(false));
+            dispatch(setIsLoadingGoods(false));
         })
     }
 }
 
-export const filterPrice = (minPrice, maxPrice) => {
+export const filterPrice = (minPrice, maxPrice, warehouseId) => {
     return (dispatch) => {
-        goodsApi.filter(minPrice, maxPrice).then(response => {
+        goodsApi.filter(minPrice, maxPrice, warehouseId).then(response => {
             dispatch(filterPriceAC(response.data));
         })
     }
 }
 
-export const searchGoods = (dateGoods) => {
+export const searchGoods = (dateGoods, warehouseId) => {
     return (dispatch) => {
-        goodsApi.searchGoods(dateGoods).then(response => {
+        goodsApi.searchGoods(dateGoods, warehouseId).then(response => {
             dispatch(searchGoodsAC(response.data));
         })
     }
 }
 
-export const deleteFilter = () => {
+export const deleteFilter = (warehouseId) => {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
-        goodsApi.initialGoods().then(response => {
+        dispatch(setIsLoadingGoods(true));
+        goodsApi.initialGoods(warehouseId).then(response => {
             dispatch(deleteFilterAC(response.data));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed to get objects"));
         }).finally(() => {
-            dispatch(setIsLoading(false));
+            dispatch(setIsLoadingGoods(false));
         })
     }
 }
 
-export const deleteSearch = () => {
+export const deleteSearch = (warehouseId) => {
     return (dispatch) => {
-        dispatch(setIsLoading(true));
-        goodsApi.initialGoods().then(response => {
+        dispatch(setIsLoadingGoods(true));
+        goodsApi.initialGoods(warehouseId).then(response => {
             dispatch(deleteSearchAC(response.data));
         }).catch((e) => {
             dispatch(setIsErrorEndError(true, "error: failed to get objects"));
         }).finally(() => {
-            dispatch(setIsLoading(false));
+            dispatch(setIsLoadingGoods(false));
         })
     }
 }
@@ -267,7 +267,7 @@ export const setIsErrorEndError = (isError, error) => ({
     isError
 })
 
-export const setIsLoading = (isLoading) => ({
+export const setIsLoadingGoods = (isLoading) => ({
     type: SET_IS_LOADING,
     isLoading
 })
