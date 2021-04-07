@@ -34,7 +34,9 @@ class GoodsContainer extends React.Component {
                 description: tempGoods.description,
                 quantity: quantity,
                 imgUrl: tempGoods.imgUrl
-            });
+            },
+                this.props.warehouseId
+            );
         }
         if (nameAction === "minus") {
             let tempGoods = this.props.goods.find(item => item.id === id);
