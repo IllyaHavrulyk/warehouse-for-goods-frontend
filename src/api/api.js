@@ -86,7 +86,6 @@ export const goodsApi = {
         return instance.post("/registration", { username: login, password }, {
             headers: {
                 "Access-Control-Allow-Origin": "http://localhost:3000",
-                authorization: 'Basic ' + localStorage.getItem("userData")
             }
         });
     },
