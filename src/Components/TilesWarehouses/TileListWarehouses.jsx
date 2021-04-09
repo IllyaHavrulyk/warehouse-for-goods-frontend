@@ -27,7 +27,7 @@ const TileListWarehouse = ({ warehouses, deleteWarehouse }) => {
                 <TilesWarehouses
                     deleteWarehouse={deleteWarehouse}
                     warehouses={row}
-                /> {console.log(index)}
+                />
             </Row>
         ))
         ));

@@ -31,7 +31,7 @@ const TileList = ({ goods, deleteGoods, setGoodsView, changeQuantityForGoods, wa
                     deleteGoods={deleteGoods}
                     setGoodsView={setGoodsView}
                     warehouseId={warehouseId}
-                /> {console.log(index)}
+                /> 
             </Row>
         ))
         ));

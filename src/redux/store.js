@@ -5,15 +5,15 @@ import viewReducer from "./viewReducer";
 import appReducer from "./appReducer";
 import registrationReducer from "./registrationReducer";
 import warehouseReducer from "./warehouseReducer";
-
-
+import statsReducer from "./statsReducer";
 let reducer = combineReducers({
-    goods: goodsReducer,
-    view: viewReducer,
-    app: appReducer,
-    registration: registrationReducer,
-    warehouse: warehouseReducer
-})
+  goods: goodsReducer,
+  view: viewReducer,
+  app: appReducer,
+  registration: registrationReducer,
+  warehouse: warehouseReducer,
+  stats: statsReducer,
+});
 
 let store = createStore(reducer, applyMiddleware(thunkMiddleWare));
 export default store;
