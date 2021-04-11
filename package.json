@@ -30,7 +30,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "fake-json": "json-server ./src/DB/DB.json --watch --port 3001"
+    "fake-json": "json-server ./src/DB/DB.json --watch --port 3001",
+    "heroku-postbuild": "npm install  &&  npm install final-form react-final-form && npm run build"
   },
   "eslintConfig": {
     "extends": [
