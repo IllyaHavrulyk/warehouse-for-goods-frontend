@@ -27,8 +27,8 @@ const ItemFoundGoods = ({ goods, deleteGoods, changeQuantityForGoods }) => {
         setChangeQuantity({ name, isOpenWindowChange: true, idItemForChangeQuantity: id });
     }
 
-    const onChangeQuantity = (quantity) => {
-        changeQuantityForGoods(changeQuantity.idItemForChangeQuantity, changeQuantity.name, quantity);
+    const onChangeQuantity = (quantity, isCreateNewGoods) => {
+        changeQuantityForGoods(changeQuantity.idItemForChangeQuantity, changeQuantity.name, quantity, isCreateNewGoods);
         setChangeQuantity({ name: null, isOpenWindowChange: false, idItemForChangeQuantity: null });
     }
 
@@ -63,7 +63,7 @@ const ItemFoundGoods = ({ goods, deleteGoods, changeQuantityForGoods }) => {
                         {
                             changeQuantity.isOpenWindowChange &&
                             changeQuantity.idItemForChangeQuantity === goods.id &&
-                            <ChangeQuantity action={onChangeQuantity} setChangeQuantity={setChangeQuantity} />
+                            <ChangeQuantity action={onChangeQuantity} setChangeQuantity={setChangeQuantity} name={changeQuantity.name} />
                         }
                     </Card.Body>
                     <div className={style.groupButton}>

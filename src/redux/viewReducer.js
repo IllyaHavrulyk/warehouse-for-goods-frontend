@@ -1,13 +1,10 @@
 import { goodsApi } from "../api/api";
+import { setIsErrorEndError } from "./goodsReducer";
 
 const SET_GOODS = "warehouse/view/SET_GOODS";
-const SET_ERROR = "warehouse/view/SET_ERROR";
 const SET_IS_LOADING = "warehouse/view/SET_IS_LOADING";
-
 const initialState = {
     goods: null,
-    isError: false,
-    error: null
 }
 
 const viewReducer = (state = initialState, action) => {
@@ -16,12 +13,6 @@ const viewReducer = (state = initialState, action) => {
             return {
                 ...state,
                 goods: action.goods
-            }
-        case SET_ERROR:
-            return {
-                ...state,
-                isError: action.isError,
-                error: action.error
             }
         case SET_IS_LOADING:
             return {
@@ -39,7 +30,7 @@ export const getGoods = (goodsId) => {
         goodsApi.getGoods(goodsId).then(response => {
             dispatch(setGoods(response.data));
         }).catch((e) => {
-            dispatch(setError(true, "error: failed get object"));
+            dispatch(setIsErrorEndError(true, "error: failed get object"));
         }).finally(() => {
             dispatch(setIsLoading(false));
         })
@@ -56,10 +47,4 @@ export const setGoods = (goods) => ({
 export const setIsLoading = (isLoading) => ({
     type: SET_IS_LOADING,
     isLoading
-})
-
-export const setError = (error, isError) => ({
-    type: SET_ERROR,
-    error,
-    isError
 })

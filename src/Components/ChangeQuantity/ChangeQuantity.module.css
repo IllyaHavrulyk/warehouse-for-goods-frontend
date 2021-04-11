@@ -75,3 +75,16 @@
   transition: 0.25s;
   outline: none;
 }
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.checkbox input {
+  width: auto;
+}
+
+.checkbox span {
+  color: white;
+}

@@ -19,12 +19,6 @@ class ViewContainer extends React.Component {
         if (this.props.isLoading) {
             return <Preloader />
         }
-        if (this.props.isError) {
-            return <ErrorMessage
-                setIsErrorEndError={this.props.setError}
-                error={this.props.error}
-            />
-        }
         if (!this.props.goods) {
             return <div></div>
         }
@@ -39,14 +33,12 @@ class ViewContainer extends React.Component {
 const mapDispatchToProps = (state) => {
     return {
         goods: state.view.goods,
-        error: state.view.error,
-        isError: state.view.isError,
         isLoading: state.view.isLoading
     }
 }
 
 export default compose(
-    connect(mapDispatchToProps, { getGoods, setIsLoading, setError }),
+    connect(mapDispatchToProps, { getGoods, setIsLoading }),
     withRouter,
     withAuthRedirect
 )(ViewContainer)

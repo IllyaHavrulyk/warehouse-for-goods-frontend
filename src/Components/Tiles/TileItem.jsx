@@ -34,8 +34,8 @@ const Tiles = ({ goods, gridMarkup, deleteGoods, changeQuantityForGoods, warehou
         setChangeQuantity({ name, isOpenWindowChange: true, idItemForChangeQuantity: id });
     }
 
-    const onChangeQuantity = (quantity) => {
-        changeQuantityForGoods(changeQuantity.idItemForChangeQuantity, changeQuantity.name, quantity);
+    const onChangeQuantity = (quantity, isCreateNewGoods) => {
+        changeQuantityForGoods(changeQuantity.idItemForChangeQuantity, changeQuantity.name, quantity, isCreateNewGoods);
         setChangeQuantity({ name: null, isOpenWindowChange: false, idItemForChangeQuantity: null });
     }
 
@@ -76,7 +76,11 @@ const Tiles = ({ goods, gridMarkup, deleteGoods, changeQuantityForGoods, warehou
                                 {
                                     changeQuantity.isOpenWindowChange &&
                                     changeQuantity.idItemForChangeQuantity === item.id &&
-                                    <ChangeQuantity action={onChangeQuantity} setChangeQuantity={setChangeQuantity} />
+                                    <ChangeQuantity
+                                        action={onChangeQuantity}
+                                        setChangeQuantity={setChangeQuantity}
+                                        name={changeQuantity.name}
+                                    />
                                 }
                                 <NavLink to={`/warehouse/${warehouseId}/edit/${item.id}`}>
                                     <Button variant="success" style={{ margin: 10 + "px" }}>Edit </Button>

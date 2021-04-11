@@ -189,16 +189,27 @@ export const editGoods = (goods) => {
 
 export const filterPrice = (minPrice, maxPrice, warehouseId) => {
     return (dispatch) => {
+        dispatch(setIsLoadingGoods(true));
         goodsApi.filter(minPrice, maxPrice, warehouseId).then(response => {
             dispatch(filterPriceAC(response.data));
+        }).catch(e => {
+            dispatch(setIsErrorEndError(true, "error: failed to filter product"));
         })
+            .finally(() => {
+                dispatch(setIsLoadingGoods(false))
+            })
     }
 }
 
 export const searchGoods = (dateGoods, warehouseId) => {
     return (dispatch) => {
+        dispatch(setIsLoadingGoods(true));
         goodsApi.searchGoods(dateGoods, warehouseId).then(response => {
             dispatch(searchGoodsAC(response.data));
+        }).catch(e => {
+            dispatch(setIsErrorEndError(true, "error: failed to search product"));
+        }).finally(() => {
+            dispatch(setIsLoadingGoods(false));
         })
     }
 }

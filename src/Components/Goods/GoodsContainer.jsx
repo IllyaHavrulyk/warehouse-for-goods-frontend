@@ -25,8 +25,8 @@ class GoodsContainer extends React.Component {
         this.props.history.push(`/view/${goods.id}`);
     }
 
-    changeQuantityForGoods = (id, nameAction, quantity) => {
-        if (nameAction === "plus") {
+    changeQuantityForGoods = (id, nameAction, quantity, isCreateNewGoods) => {
+        if (nameAction === "plus" && isCreateNewGoods) {
             let tempGoods = this.props.goods.find(item => item.id === id);
             this.props.addGoods({
                 name: tempGoods.name,
@@ -37,6 +37,12 @@ class GoodsContainer extends React.Component {
             },
                 this.props.warehouseId
             );
+        }
+        else if (nameAction === "plus") {
+            let tempGoods = this.props.goods.find(item => item.id === id);
+            quantity = Number.parseInt(quantity);
+            tempGoods.quantity += quantity;
+            this.props.editGoods(tempGoods);
         }
         if (nameAction === "minus") {
             let tempGoods = this.props.goods.find(item => item.id === id);
