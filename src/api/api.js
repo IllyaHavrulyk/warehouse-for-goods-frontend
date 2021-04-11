@@ -30,6 +30,7 @@ export const goodsApi = {
       headers: {
         "Access-Control-Allow-Origin": "http://fierce-gorge-15492.herokuapp.com/",
         authorization: "Basic " + localStorage.getItem("userData"),
+
       },
     });
     //return axios.delete("http://localhost:3001/Products/" + goodsId);
