@@ -3,6 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import style from "./Stats.module.css";
 import { Line, Pie, Bar } from "react-chartjs-2";
 import WarehousesPerMonth from './WarehousesPerMonth';
+import { ProductsPerMonth } from './ProductsPerMonth';
 export default function Stats({ stats }) {
     const { warehousesCreatedPerMonth } = stats;
 
@@ -147,7 +148,7 @@ export default function Stats({ stats }) {
                 <h2>Popular stats</h2>
                 <Row>
                     <Col md="6"><WarehousesPerMonth stats={stats.warehousesCreatedPerEveryMonth} /><h4>Warehouses created per month</h4></Col>
-                    <Col md="6"><Line data={productsCreatedPerMonth} /><h4>Products created per month</h4></Col>
+                    <Col md="6"><ProductsPerMonth stats={stats.productsCreatedPerEveryMonth} /></Col>
                 </Row>
                 <Row>
                     <Col md="12"><Line data={data} options={options} /><h4>Average warehouses per user & products created per warehouse</h4></Col>
