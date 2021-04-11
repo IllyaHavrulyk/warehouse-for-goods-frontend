@@ -155,7 +155,6 @@ export default function Stats({ stats }) {
                 <Row>
                     <Col md="6"><Pie data={pieData} /><h4>User's warehouses</h4></Col>
                     <Col md="6"><Bar data={barData} options={barOptions} /><h4>Users registered per month</h4></Col>
-
                 </Row>
             </Container>
 
