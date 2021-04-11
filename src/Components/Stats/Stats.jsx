@@ -2,7 +2,9 @@ import React, { Fragment } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import style from "./Stats.module.css";
 import { Line, Pie, Bar } from "react-chartjs-2";
-export default function Stats() {
+import WarehousesPerMonth from './WarehousesPerMonth';
+export default function Stats({ stats }) {
+    const { warehousesCreatedPerMonth } = stats;
 
     const pieData = {
         labels: ['One', 'Two', 'Three', '4 and more'],
@@ -54,32 +56,7 @@ export default function Stats() {
         ]
     };
 
-    const warehousesCreatedPerMonth = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: '# of warehouses',
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
-                data: [5, 3, 12, 20, 8, 18, 14]
-            }
-        ]
-    };
+
 
     const data = {
         labels: ['1', '2', '3', '4', '5', '6'],
@@ -169,7 +146,7 @@ export default function Stats() {
             <Container>
                 <h2>Popular stats</h2>
                 <Row>
-                    <Col md="6"><Line data={warehousesCreatedPerMonth} /><h4>Warehouses created per month</h4></Col>
+                    <Col md="6"><WarehousesPerMonth stats={stats.warehousesCreatedPerEveryMonth} /><h4>Warehouses created per month</h4></Col>
                     <Col md="6"><Line data={productsCreatedPerMonth} /><h4>Products created per month</h4></Col>
                 </Row>
                 <Row>
