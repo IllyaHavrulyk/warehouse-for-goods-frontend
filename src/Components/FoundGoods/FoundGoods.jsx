@@ -15,6 +15,7 @@ const FoundGoods = ({ foundGoods, deleteGoods, deleteSearch, changeQuantityForGo
                         goods={item}
                         deleteGoods={deleteGoods}
                         changeQuantityForGoods={changeQuantityForGoods}
+                        warehouseId={warehouseId}
                     />
                 )
             })}

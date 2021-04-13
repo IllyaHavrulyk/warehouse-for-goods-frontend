@@ -17,17 +17,6 @@ class AddGoodsContainer extends React.Component {
         }
     }
     render() {
-        if (this.props.isError) {
-            return (
-                <div>
-                    <ErrorMessage
-                        error={this.props.error}
-                        setIsErrorEndError={this.props.setIsErrorEndError}
-                    />
-                    <AddGoods {...this.props} />
-                </div>
-            )
-        }
         return (
             <AddGoods {...this.props} />
         )

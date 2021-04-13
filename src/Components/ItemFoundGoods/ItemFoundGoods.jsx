@@ -7,7 +7,7 @@ import plus from "../../assets/plusQuantity.svg";
 import minus from "../../assets/minus.svg";
 import ChangeQuantity from "../ChangeQuantity/ChangeQuantity";
 
-const ItemFoundGoods = ({ goods, deleteGoods, changeQuantityForGoods }) => {
+const ItemFoundGoods = ({ goods, deleteGoods, changeQuantityForGoods, warehouseId }) => {
     const [open, setOpen] = React.useState(false);
     const [itemIdToDelete, setItemIdToDelete] = React.useState(-1);
     const [changeQuantity, setChangeQuantity] = React.useState({ name: null, isOpenWindowChange: false, idItemForChangeQuantity: null });
@@ -16,7 +16,7 @@ const ItemFoundGoods = ({ goods, deleteGoods, changeQuantityForGoods }) => {
         setOpen(false);
         let tempId = itemIdToDelete;
         setItemIdToDelete(-1);
-        deleteGoods(tempId);
+        deleteGoods(tempId, warehouseId);
     }
 
     const handleClose = () => {
@@ -68,12 +68,12 @@ const ItemFoundGoods = ({ goods, deleteGoods, changeQuantityForGoods }) => {
                     </Card.Body>
                     <div className={style.groupButton}>
                         <div className={style.edit}>
-                            <NavLink to={"/edit/" + goods.id}>
+                            <NavLink to={`/warehouse/${warehouseId}/edit/${goods.id}`}>
                                 <Button variant="success">Edit </Button>
                             </NavLink>
                         </div>
                         <div className={style.view}>
-                            <NavLink to={"/view/" + goods.id}>
+                            <NavLink to={`/warehouse/${warehouseId}/view/${goods.id}`}>
                                 <Button variant="primary">View </Button>
                             </NavLink>
                         </div>

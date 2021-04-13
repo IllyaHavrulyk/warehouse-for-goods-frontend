@@ -24,7 +24,7 @@ class EditGoodsContainer extends React.Component {
             )
         }
         if (this.props.isEditGoods) {
-            return <Redirect to="/home" />
+            return <Redirect to={`/warehouse/${this.props.warehouseId}/home`} />
         }
         if (this.props.isError) {
             return <div>
@@ -55,7 +55,8 @@ const mapStateToProps = (state) => {
         isEditGoods: state.goods.isEditGoods,
         error: state.goods.error,
         isError: state.goods.isError,
-        isLoading: state.goods.isLoading
+        isLoading: state.goods.isLoading,
+        warehouseId: state.warehouse.warehouseId
     }
 }
 
