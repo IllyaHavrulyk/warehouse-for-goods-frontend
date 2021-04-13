@@ -13,6 +13,7 @@ const Header = ({ searchGoods, logout, warehouseId }) => {
     const [searchValue, setSearchValue] = React.useState("");
 
     const search = () => {
+        setSearchValue("");
         searchGoods(searchValue, warehouseId);
     }
 

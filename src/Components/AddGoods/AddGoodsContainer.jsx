@@ -12,8 +12,8 @@ class AddGoodsContainer extends React.Component {
     componentDidMount() {
         this.props.setIsPutGoods(false);
         if (!this.props.warehouseId) {
-            this.warehouseId = this.props.match.params.warehouseId;
-            this.props.setActiveWarehouseId(this.warehouseId);
+            let warehouseId = this.props.match.params.warehouseId;
+            this.props.setActiveWarehouseId(warehouseId);
         }
     }
     render() {

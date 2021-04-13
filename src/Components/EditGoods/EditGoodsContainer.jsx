@@ -4,6 +4,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 import withAuthRedirect from '../../hoc/withAuthRedirectAndError';
 import { editGoods, getGoods, setIsEditGoods, setIsErrorEndError } from '../../redux/goodsReducer';
+import { setActiveWarehouseId } from '../../redux/warehouseReducer';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Preloader from '../Preloader/Preloader';
 import EditGoods from './EditGoods';
@@ -11,7 +12,11 @@ import EditGoods from './EditGoods';
 
 class EditGoodsContainer extends React.Component {
     componentDidMount() {
-        let goodsId = this.props.match.params.goodsId;
+        if (!this.props.warehouseId) {
+            let warehouseId = this.props.match.params.warehouseId;
+            this.props.setActiveWarehouseId(warehouseId);
+        }
+        let goodsId = this.props.match.params.goodsId
         this.props.getGoods(goodsId);
     }
     componentWillUnmount() {
@@ -44,6 +49,7 @@ class EditGoodsContainer extends React.Component {
                 setIsEditGoods={this.props.setIsEditGoods}
                 editGoods={this.props.editGoods}
                 isLoading={this.props.isLoading}
+                warehouseId={this.props.warehouse}
             />
         )
     }
@@ -56,12 +62,12 @@ const mapStateToProps = (state) => {
         error: state.goods.error,
         isError: state.goods.isError,
         isLoading: state.goods.isLoading,
-        warehouseId: state.warehouse.warehouseId
+        warehouseId: state.warehouse.activeWarehouseId
     }
 }
 
 export default compose(
-    connect(mapStateToProps, { getGoods, setIsEditGoods, editGoods, setIsErrorEndError }),
+    connect(mapStateToProps, { getGoods, setIsEditGoods, editGoods, setIsErrorEndError, setActiveWarehouseId }),
     withRouter,
     withAuthRedirect
 )(EditGoodsContainer);
