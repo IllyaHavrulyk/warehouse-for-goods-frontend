@@ -1,4 +1,5 @@
 import { goodsApi } from "../api/api";
+import { setError } from "./errorReducer";
 
 const SET_GOODS = "warehouse/goods/SET_GOODS";
 const ADD_GOODS = "warehouse/goods/ADD_GOODS";
@@ -7,7 +8,6 @@ const DELETE_GOODS = "warehouse/goods/DELETE_GOODS";
 const GET_GOODS = "warehouse/goods/GET_GOODS";
 const SET_IS_EDIT_GOODS = "warehouse/goods/SET_IS_EDIT_GOODS";
 const EDIT_GOODS = "warehouse/goods/EDIT_GOODS";
-const SET_IS_ERROR_AND_ERROR = "warehouse/goods/SET_IS_ERROR_AND_ERROR";
 const SET_IS_LOADING = "warehouse/goods/SET_IS_LOADING";
 const SEARCH_GOODS = "warehouse/goods/SEARCH_GOODS";
 const FILTER_PRICE = "warehouse/goods/FILTER_PRICE";
@@ -20,8 +20,6 @@ const initialState = {
     isPutGoods: false,
     goodsEdit: null,
     isEditGoods: false,
-    isError: false,
-    error: null,
     isSearch: false,
     isFilter: false,
 }
@@ -75,12 +73,6 @@ const goodsReducer = (state = initialState, action) => {
                 }),
                 goodsEdit: null
             }
-        case SET_IS_ERROR_AND_ERROR:
-            return {
-                ...state,
-                isError: action.isError,
-                error: action.error
-            }
         case SET_IS_LOADING: {
             return {
                 ...state,
@@ -126,7 +118,7 @@ export const requestGoods = (warehouseId) => {
         goodsApi.initialGoods(warehouseId).then(response => {
             dispatch(setGoods(response.data));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
+            dispatch(setError(true, "error: failed to get objects", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -142,7 +134,7 @@ export const addGoods = (goods, warehouseId) => {
             dispatch(putGoods(response.data));
             dispatch(setIsPutGoods(true));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed add object"));
+            dispatch(setError(true, "error: failed add object", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -154,7 +146,7 @@ export const deleteGoods = (goodsId, warehouseId) => {
         goodsApi.deleteGoods(goodsId, warehouseId).then(response => {
             dispatch(deleteGoodsAC(goodsId));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed delete object"));
+            dispatch(setError(true, "error: failed delete object", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -167,7 +159,7 @@ export const getGoods = (goodsId) => {
         goodsApi.getGoods(goodsId).then(response => {
             dispatch(getGoodsAC(response.data));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed get object"));
+            dispatch(setError(true, "error: failed get object", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -180,7 +172,7 @@ export const editGoods = (goods) => {
         goodsApi.editGoods(goods).then(response => {
             dispatch(editGoodsAC(response.data));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed edit object"));
+            dispatch(setError(true, "error: failed edit object", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -193,7 +185,7 @@ export const filterPrice = (minPrice, maxPrice, warehouseId) => {
         goodsApi.filter(minPrice, maxPrice, warehouseId).then(response => {
             dispatch(filterPriceAC(response.data));
         }).catch(e => {
-            dispatch(setIsErrorEndError(true, "error: failed to filter product"));
+            dispatch(setError(true, "error: failed to filter product"));
         })
             .finally(() => {
                 dispatch(setIsLoadingGoods(false))
@@ -207,7 +199,7 @@ export const searchGoods = (dateGoods, warehouseId) => {
         goodsApi.searchGoods(dateGoods, warehouseId).then(response => {
             dispatch(searchGoodsAC(response.data));
         }).catch(e => {
-            dispatch(setIsErrorEndError(true, "error: failed to search product"));
+            dispatch(setError(true, "error: failed to search product"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -220,7 +212,7 @@ export const deleteFilter = (warehouseId) => {
         goodsApi.initialGoods(warehouseId).then(response => {
             dispatch(deleteFilterAC(response.data));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
+            dispatch(setError(true, "error: failed to get objects"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -233,7 +225,7 @@ export const deleteSearch = (warehouseId) => {
         goodsApi.initialGoods(warehouseId).then(response => {
             dispatch(deleteSearchAC(response.data));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to get objects"));
+            dispatch(setError(true, "error: failed to get objects", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoadingGoods(false));
         })
@@ -270,12 +262,6 @@ export const getGoodsAC = (goods) => ({
 export const setIsEditGoods = (isEditGoods) => ({
     type: SET_IS_EDIT_GOODS,
     isEditGoods
-})
-
-export const setIsErrorEndError = (isError, error) => ({
-    type: SET_IS_ERROR_AND_ERROR,
-    error,
-    isError
 })
 
 export const setIsLoadingGoods = (isLoading) => ({

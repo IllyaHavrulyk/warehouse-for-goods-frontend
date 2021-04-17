@@ -6,6 +6,7 @@ import appReducer from "./appReducer";
 import registrationReducer from "./registrationReducer";
 import warehouseReducer from "./warehouseReducer";
 import statsReducer from "./statsReducer";
+import errorReducer from "./errorReducer";
 let reducer = combineReducers({
   goods: goodsReducer,
   view: viewReducer,
@@ -13,6 +14,7 @@ let reducer = combineReducers({
   registration: registrationReducer,
   warehouse: warehouseReducer,
   stats: statsReducer,
+  error: errorReducer
 });
 
 let store = createStore(reducer, applyMiddleware(thunkMiddleWare));

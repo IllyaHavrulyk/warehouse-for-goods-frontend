@@ -31,14 +31,6 @@ class EditGoodsContainer extends React.Component {
         if (this.props.isEditGoods) {
             return <Redirect to={`/warehouse/${this.props.warehouseId}/home`} />
         }
-        if (this.props.isError) {
-            return <div>
-                <ErrorMessage
-                    error={this.props.error}
-                    setIsErrorEndError={this.props.setIsErrorEndError}
-                />
-            </div>
-        }
         if (!this.props.goods) {
             return <div></div>
         }
@@ -60,14 +52,12 @@ const mapStateToProps = (state) => {
         goods: state.goods.goodsEdit,
         isEditGoods: state.goods.isEditGoods,
         error: state.goods.error,
-        isError: state.goods.isError,
-        isLoading: state.goods.isLoading,
         warehouseId: state.warehouse.activeWarehouseId
     }
 }
 
 export default compose(
-    connect(mapStateToProps, { getGoods, setIsEditGoods, editGoods, setIsErrorEndError, setActiveWarehouseId }),
+    connect(mapStateToProps, { getGoods, setIsEditGoods, editGoods, setActiveWarehouseId }),
     withRouter,
     withAuthRedirect
 )(EditGoodsContainer);

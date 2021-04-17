@@ -1,5 +1,5 @@
-import { setIsErrorEndError } from "./goodsReducer";
 import { goodsApi } from "../api/api";
+import { setError } from "./errorReducer";
 
 const LOAD_STATS = "stats/LOAD_STATS";
 
@@ -26,7 +26,7 @@ export const requestStats = () => async (dispatch) => {
     const result = await goodsApi.listStats();
     dispatch(loadStats(result.data));
   } catch (error) {
-    dispatch(setIsErrorEndError(true, "error: failed to get stats"));
+    dispatch(setError(true, "error: failed to get stats", "problem with server or internet connection"));
   }
 };
 

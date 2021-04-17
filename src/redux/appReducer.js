@@ -1,5 +1,5 @@
 import { goodsApi } from "../api/api";
-import { setIsErrorEndError } from "./goodsReducer";
+import { setError } from "./errorReducer";
 
 const SET_IS_LOADING = "warehouse/app/SET_IS_LOADING";
 const SET_IS_AUTH = "warehouse/app/SET_IS_AUTH";
@@ -39,11 +39,12 @@ export const initialApp = () => {
                 dispatch(setIsAuth(false));
             }
         }).catch((e) => {
+            console.log(e);
             if (!e.response) {
-                dispatch(setIsErrorEndError(true, "error initialize app"));
+                dispatch(setError(true, "error initialize app", "problem with server or internet connection"));
             }
             else if (e.response.status !== 401) {
-                dispatch(setIsErrorEndError(true, "error initialize app"));
+                dispatch(setError(true, "error initialize app", "problem with server or internet connection"));
             }
         }).finally(() => {
             dispatch(setIsLoadingApp(false));
@@ -55,9 +56,18 @@ export const login = (userData) => {
     return (dispatch) => {
         dispatch(setIsLoadingApp(true));
         goodsApi.login(userData).then(response => {
+            localStorage.setItem(
+                "userData",
+                window.btoa(userData.username + ":" + userData.password)
+            );
             dispatch(setIsAuth(true));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error login, check your login or password"));
+            if (e.response && e.response.status === 401) {
+                dispatch(setError(true, "error login", "check your login or password and try again"));
+            }
+            else {
+                dispatch(setError(true, "error login", "problem with server or internet connection"));
+            }
         }).finally(() => {
             dispatch(setIsLoadingApp(false));
         })
@@ -70,7 +80,7 @@ export const logout = () => {
         goodsApi.logout().then(response => {
             dispatch(setIsAuth(false));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error logout"));
+            dispatch(setError(true, "error logout", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoadingApp(false));
         })

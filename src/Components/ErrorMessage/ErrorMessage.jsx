@@ -12,9 +12,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const ErrorMessage = ({ error, setIsErrorEndError }) => {
+const ErrorMessage = ({ error, setError }) => {
     const onClose = () => {
-        setIsErrorEndError(false, null);
+        setError(false, "", "");
     }
     return (
         <Dialog
@@ -25,10 +25,10 @@ const ErrorMessage = ({ error, setIsErrorEndError }) => {
             aria-labelledby="alert-dialog-slide-title"
             aria-describedby="alert-dialog-slide-description"
         >
-            <DialogTitle className={style.error} id="alert-dialog-slide-title">{error}</DialogTitle>
+            <DialogTitle className={style.error} id="alert-dialog-slide-title">{error.errorMessage}</DialogTitle>
             <DialogContent >
                 <DialogContentText id="alert-dialog-slide-description">
-                    An error occurred, check your internet connection and reload the page
+                    {error.errorCorrectionMessages}
                 </DialogContentText>
             </DialogContent >
             <DialogActions >

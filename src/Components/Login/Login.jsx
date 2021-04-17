@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from 'react-bootstrap';
 import { Field, Form } from 'react-final-form';
 import { Input } from '../common/FormControls/FormsControls';
-import { Required } from '../utils/validators/validators';
+import { PasswordOrLogin, Required } from '../utils/validators/validators';
 import { NavLink } from 'react-router-dom';
 import style from "./Login.module.css";
 const Login = ({ login, isLoading }) => {
@@ -37,19 +37,18 @@ const LoginFrom = ({ onSubmit }) => {
                             component={Input}
                             placeholder="login"
                             validate={values => {
-                                return Required(values);
+                                return PasswordOrLogin(values);
                             }}
                         />
                     </div>
                     <div className={style.addGoodsField}>
                         <Field
-
                             name="password"
                             component={Input}
                             type="password"
                             placeholder="password"
                             validate={values => {
-                                return Required(values);
+                                return PasswordOrLogin(values);
                             }}
                         />
                     </div>

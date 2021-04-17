@@ -1,5 +1,5 @@
 import { goodsApi } from "../api/api"
-import { setIsErrorEndError } from "./goodsReducer";
+import { setError } from "./errorReducer";
 
 const SET_WAREHOUSES = "warehouse/warehouses/SET_WAREHOUSES";
 const ADD_WAREHOUSE = "warehouse/warehouses/ADD_WAREHOUSE";
@@ -55,7 +55,7 @@ export const requestWarehouses = () => {
         goodsApi.getWarehouses().then(response => {
             dispatch(setWarehouses(response.data));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to get warehouses"));
+            dispatch(setError(true, "error: failed to get warehouses", "problem with server or internet connection"));
         })
     }
 }
@@ -65,7 +65,7 @@ export const addWarehouse = (name) => {
         goodsApi.addWarehouse(name).then(response => {
             dispatch(addWarehouseAC(response.data))
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to add warehouse"));
+            dispatch(setError(true, "error: failed to add warehouse", "problem with server or internet connection"));
         })
     }
 }
@@ -75,7 +75,7 @@ export const deleteWarehouse = (id) => {
         goodsApi.deleteWarehouse(id).then(response => {
             dispatch(deleteWarehouseAC(id));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed to delete warehouse"));
+            dispatch(setError(true, "error: failed to delete warehouse", "problem with server or internet connection"));
         })
     }
 }

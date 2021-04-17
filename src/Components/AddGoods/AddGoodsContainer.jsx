@@ -26,15 +26,13 @@ class AddGoodsContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         isPutGoods: state.goods.isPutGoods,
-        error: state.goods.error,
-        isError: state.goods.isError,
         isLoading: state.goods.isLoading,
         warehouseId: state.warehouse.activeWarehouseId
     };
 }
 
 export default compose(
-    connect(mapStateToProps, { addGoods, setIsPutGoods, setIsErrorEndError, setActiveWarehouseId }),
+    connect(mapStateToProps, { addGoods, setIsPutGoods, setActiveWarehouseId }),
     withRouter,
     withAuthRedirect
 )(AddGoodsContainer);

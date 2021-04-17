@@ -2,16 +2,16 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect, withRouter } from 'react-router'
 import { login } from '../../redux/appReducer'
-import { setIsErrorEndError } from '../../redux/goodsReducer'
+import { setError } from '../../redux/errorReducer'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Login from './Login'
 
-const LoginContainer = ({ isLoading, isAuth, login, isError, error, setIsErrorEndError }) => {
+const LoginContainer = ({ isLoading, error, isAuth, login, setError }) => {
 
-    if (isError) {
+    if (error.isError) {
         return (
             <>
-                <ErrorMessage error={error} setIsErrorEndError={setIsErrorEndError} />
+                <ErrorMessage error={error} setError={setError} />
                 <Login isLoading={isLoading} login={login} />
             </>
         )
@@ -27,10 +27,9 @@ const LoginContainer = ({ isLoading, isAuth, login, isError, error, setIsErrorEn
 const mapStateToProps = (state) => {
     return {
         isAuth: state.app.isAuth,
-        isError: state.goods.isError,
-        error: state.goods.error,
+        error: state.error.error,
         isLoading: state.app.isLoading
     }
 }
 
-export default withRouter(connect(mapStateToProps, { login, setIsErrorEndError })(LoginContainer));
+export default withRouter(connect(mapStateToProps, { login, setError })(LoginContainer));

@@ -1,5 +1,5 @@
 import { goodsApi } from "../api/api";
-import { setIsErrorEndError } from "./goodsReducer";
+import { setError } from "./errorReducer";
 
 const SET_GOODS = "warehouse/view/SET_GOODS";
 const SET_IS_LOADING = "warehouse/view/SET_IS_LOADING";
@@ -30,7 +30,7 @@ export const getGoods = (goodsId) => {
         goodsApi.getGoods(goodsId).then(response => {
             dispatch(setGoods(response.data));
         }).catch((e) => {
-            dispatch(setIsErrorEndError(true, "error: failed get object"));
+            dispatch(setError(true, "error: failed get object", "problem with server or internet connection"));
         }).finally(() => {
             dispatch(setIsLoading(false));
         })

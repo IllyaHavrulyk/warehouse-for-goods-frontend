@@ -67,8 +67,6 @@ const mapStateToProps = (state) => {
     return {
         goods: state.goods.goods,
         isLoading: state.goods.isLoading,
-        isError: state.goods.isError,
-        error: state.goods.error,
         isSearch: state.goods.isSearch,
         isFilter: state.goods.isFilter,
         warehouseId: state.warehouse.activeWarehouseId,
@@ -80,7 +78,6 @@ export default compose(
     connect(mapStateToProps, {
         requestGoods,
         deleteGoods,
-        setIsErrorEndError,
         setGoods,
         deleteSearch,
         deleteFilter,
