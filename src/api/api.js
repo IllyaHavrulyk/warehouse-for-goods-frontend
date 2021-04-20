@@ -65,7 +65,7 @@ export const goodsApi = {
     return instance.get(`/login`, {
       headers: {
         "Access-Control-Allow-Origin": "http://fierce-gorge-15492.herokuapp.com",
-        //authorization: "Basic " + localStorage.getItem("userData"),
+        authorization: "Basic " + localStorage.getItem("userData"),
       },
     });
   },
