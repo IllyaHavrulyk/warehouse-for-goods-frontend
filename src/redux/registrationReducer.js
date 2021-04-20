@@ -1,4 +1,6 @@
 import { goodsApi } from "../api/api";
+import { setIsAuth } from "./appReducer";
+import { setError } from "./errorReducer";
 
 const REGISTRATION = "warehouse/registration/REGISTRATION";
 
@@ -24,7 +26,14 @@ export default registrationReducer;
 export const registration = (login, password) => {
     return (dispatch) => {
         goodsApi.registration(login, password).then(response => {
+            localStorage.setItem(
+                "userData",
+                window.btoa(login + ":" + password)
+            );
+            dispatch(setIsAuth(true));
             dispatch(registrationAC());
+        }).catch((e) => {
+            dispatch(setError(true, "error registration", "problem with server or internet connection"));
         })
     }
 }

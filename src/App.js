@@ -17,6 +17,7 @@ import RegistrationContainer from "./Components/Registration/RegistrationContain
 import WarehousesContainer from "./Components/Warehouses/WarehousesContainer";
 
 import StatsContainer from './Components/Stats/StatsContainer';
+import Footer from "./Components/Footer/Footer";
 
 class App extends React.Component {
   componentDidMount() {
@@ -56,6 +57,7 @@ class App extends React.Component {
         <Route path="/registration">
           <RegistrationContainer />
         </Route>
+        <Footer />
       </div>
     );
   }

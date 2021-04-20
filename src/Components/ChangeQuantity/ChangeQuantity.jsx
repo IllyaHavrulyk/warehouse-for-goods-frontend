@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './ChangeQuantity.module.css';
 import close from "../../assets/close.svg"
 const ChangeQuantity = ({ action, setChangeQuantity, name }) => {
     const [quantity, setQuantity] = React.useState("");
     const [isCreateNewGoods, setIsCreateNewGoods] = React.useState(false);
+    const [isInteger, setIsInteger] = React.useState(true);
+    useEffect(() => {
+        let tempQuantity = Number(quantity);
+        if (!Number.isInteger(tempQuantity)) {
+            setIsInteger(false);
+        }
+        if (Number.isInteger(tempQuantity) && !isInteger) {
+            setIsInteger(true);
+        }
+    }, [quantity])
 
     return (
         <div className={style.priceFilter}>
@@ -16,8 +26,8 @@ const ChangeQuantity = ({ action, setChangeQuantity, name }) => {
                 alt="close"
             />
             <h1>Change Quantity</h1>
-            <div className={style.inputChangeQuantity}>
-                <input value={quantity} onChange={(e) => { setQuantity(e.target.value) }} />
+            <div className={style.inputChangeQuantity + " " + (isInteger ? "" : style.error)}>
+                <input type="number" value={quantity} onChange={(e) => { setQuantity(e.target.value) }} />
                 {
                     name === "plus" &&
                     <div className={style.checkbox}>
@@ -27,7 +37,7 @@ const ChangeQuantity = ({ action, setChangeQuantity, name }) => {
                 }
             </div>
             <div className={style.editQuantity}>
-                <button onClick={() => {
+                <button disabled={!isInteger} onClick={() => {
                     action(quantity, isCreateNewGoods);
                 }}
                 >Enter</button>

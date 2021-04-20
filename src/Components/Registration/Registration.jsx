@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, Form } from 'react-final-form';
 import { Input } from '../common/FormControls/FormsControls';
-import { Required } from '../utils/validators/validators';
+import { PasswordOrLogin, Required } from '../utils/validators/validators';
 import style from "./Registration.module.css";
 
 const Registration = ({ registration }) => {
@@ -29,7 +29,7 @@ const RegistrationFrom = ({ onSubmit }) => {
                             component={Input}
                             placeholder="login"
                             validate={values => {
-                                return Required(values);
+                                return PasswordOrLogin(values);
                             }}
                         />
                     </div>
@@ -40,7 +40,7 @@ const RegistrationFrom = ({ onSubmit }) => {
                             type="password"
                             placeholder="password"
                             validate={values => {
-                                return Required(values);
+                                return PasswordOrLogin(values);
                             }}
                         />
                     </div>

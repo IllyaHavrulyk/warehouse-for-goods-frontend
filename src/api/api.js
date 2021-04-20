@@ -3,7 +3,6 @@ import axios from "axios";
 let instance = axios.create({
   withCredentials: true,
   baseURL: "http://localhost:8080",
-  redirect: "error",
 });
 
 export const goodsApi = {
@@ -71,7 +70,7 @@ export const goodsApi = {
     });
   },
   login(userData) {
-    return axios.post(`http://localhost:8080/login`, {
+    return instance.get(`http://localhost:8080/login`, {
       headers: {
         authorization: "Basic " + window.btoa(userData.username + ":" + userData.password),
         "Access-Control-Allow-Origin": "http://localhost:3000",
@@ -101,7 +100,6 @@ export const goodsApi = {
     );
   },
   logout() {
-    localStorage.removeItem("userData");
     return instance.post("/logout", {
       headers: {
         "Access-Control-Allow-Origin": "http://localhost:3000",

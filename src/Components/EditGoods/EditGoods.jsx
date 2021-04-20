@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, Form } from 'react-final-form';
 import { Redirect } from 'react-router-dom';
 import { Input, TextArea } from '../common/FormControls/FormsControls';
-import { Required } from '../utils/validators/validators';
+import { IsInteger, Required } from '../utils/validators/validators';
 import style from './EditGoods.module.css';
 
 const EditGoods = ({ goods, editGoods, isLoading }) => {
@@ -44,6 +44,7 @@ const EditGoodsForm = ({ onSubmit, goods, isLoading }) => {
                     </div>
                     <div className={style.addGoodsField}>
                         <Field
+                            type="number"
                             name="price"
                             component={Input}
                             placeholder="Price"
@@ -67,11 +68,12 @@ const EditGoodsForm = ({ onSubmit, goods, isLoading }) => {
                     <div className={style.addGoodsField}>
                         <Field
                             initialValue={goods.quantity}
+                            type="number"
                             name="quantity"
                             component={Input}
                             placeholder="Enter quantity of products."
                             validate={values => {
-                                return Required(values);
+                                return IsInteger(values);
                             }}
                         />
                     </div>

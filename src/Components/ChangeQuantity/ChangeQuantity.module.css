@@ -76,6 +76,10 @@
   outline: none;
 }
 
+.error input {
+  border-color: red;
+}
+
 .checkbox {
   display: flex;
   flex-direction: row;

@@ -62,7 +62,7 @@ export const login = (userData) => {
             );
             dispatch(setIsAuth(true));
         }).catch((e) => {
-            if (e.response && e.response.status === 401) {
+            if (e.response && e.response.status === 400) {
                 dispatch(setError(true, "error login", "check your login or password and try again"));
             }
             else {
@@ -78,9 +78,12 @@ export const logout = () => {
     return (dispatch) => {
         dispatch(setIsLoadingApp(true));
         goodsApi.logout().then(response => {
-            dispatch(setIsAuth(false));
+
         }).catch((e) => {
-            dispatch(setError(true, "error logout", "problem with server or internet connection"));
+            localStorage.removeItem("userData");
+            dispatch(setIsAuth(false));
+            //dispatch(setError(true, "error logout", "problem with server or internet connection"));
+
         }).finally(() => {
             dispatch(setIsLoadingApp(false));
         })
