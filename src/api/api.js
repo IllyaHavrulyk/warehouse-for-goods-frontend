@@ -65,7 +65,7 @@ export const goodsApi = {
     return instance.get(`/login`, {
       headers: {
         "Access-Control-Allow-Origin": "http://localhost:3000",
-        //authorization: "Basic " + localStorage.getItem("userData"),
+        authorization: "Basic " + localStorage.getItem("userData"),
       },
     });
   },
