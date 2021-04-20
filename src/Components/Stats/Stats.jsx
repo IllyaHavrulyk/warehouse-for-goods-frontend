@@ -3,61 +3,11 @@ import { Row, Col, Container } from "react-bootstrap";
 import style from "./Stats.module.css";
 import { Line, Pie, Bar } from "react-chartjs-2";
 import WarehousesPerMonth from './WarehousesPerMonth';
+import { ProductsPerMonth } from './ProductsPerMonth';
+import { UsersPerMonth } from "./UsersPerMonth";
+import WarehousesPerUser from "./WarehousesPerUser";
+import { MultiAxisWarehouses } from "./MultiAxisWarehouses";
 export default function Stats({ stats }) {
-    const { warehousesCreatedPerMonth } = stats;
-
-    const pieData = {
-        labels: ['One', 'Two', 'Three', '4 and more'],
-        datasets: [
-            {
-                label: 'Warehouses per user',
-                data: [12, 19, 3, 5],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                ],
-                borderWidth: 1,
-            },
-        ],
-    }
-
-    const productsCreatedPerMonth = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: '# of products',
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: 'rgba(75,192,192,0.4)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderCapStyle: 'butt',
-                borderDash: [],
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: 'rgba(75,192,192,1)',
-                pointBackgroundColor: '#fff',
-                pointBorderWidth: 1,
-                pointHoverRadius: 5,
-                pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                pointHoverBorderColor: 'rgba(220,220,220,1)',
-                pointHoverBorderWidth: 2,
-                pointRadius: 1,
-                pointHitRadius: 10,
-                data: [65, 59, 80, 81, 56, 55, 40]
-            }
-        ]
-    };
-
-
-
     const data = {
         labels: ['1', '2', '3', '4', '5', '6'],
         datasets: [
@@ -102,57 +52,21 @@ export default function Stats({ stats }) {
         },
     }
 
-    const barData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: '# of users registered',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
-            },
-        ],
-    }
-
-    const barOptions = {
-        scales: {
-            yAxes: [
-                {
-                    ticks: {
-                        beginAtZero: true,
-                    },
-                },
-            ],
-        },
-    }
-
     return (
         <Fragment>
             <Container>
                 <h2>Popular stats</h2>
                 <Row>
                     <Col md="6"><WarehousesPerMonth stats={stats.warehousesCreatedPerEveryMonth} /><h4>Warehouses created per month</h4></Col>
-                    <Col md="6"><Line data={productsCreatedPerMonth} /><h4>Products created per month</h4></Col>
+                    <Col md="6"><ProductsPerMonth stats={stats.productsCreatedPerEveryMonth} /><h4>Products created per every month</h4></Col>
                 </Row>
                 <Row>
-                    <Col md="12"><Line data={data} options={options} /><h4>Average warehouses per user & products created per warehouse</h4></Col>
+                    <Col md="12"><MultiAxisWarehouses stats={stats}/><h4>Average warehouses per user & products created per warehouse</h4></Col>
                 </Row>
                 <Row>
+                    <Col md="6"><WarehousesPerUser stats={stats.warehousesPerUser} /><h4>User's warehouses</h4></Col>
+                    <Col md="6"><UsersPerMonth stats={stats.usersRegisteredPerEveryMonth} /><h4>Users registered per month</h4></Col>
+
                     <Col md="6"><Pie data={pieData} /><h4>User's warehouses</h4></Col>
                     <Col md="6"><Bar data={barData} options={barOptions} /><h4>Users registered per month</h4></Col>
                 </Row>
