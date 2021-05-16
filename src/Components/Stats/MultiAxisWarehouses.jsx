@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import style from "./Stats.module.css";
 import { Line, Pie, Bar } from "react-chartjs-2";
 
-export const MultiAxisWarehouses = ({stats: {averageWarehousesPerUser, averageProductsPerWarehouse}}) => {
+export const MultiAxisWarehouses = ({ stats: { averageWarehousesPerUser, averageProductsPerWarehouse } }) => {
 
 
     let averageWarehousesPerUserStatsKeys = [];
@@ -13,12 +13,14 @@ export const MultiAxisWarehouses = ({stats: {averageWarehousesPerUser, averagePr
     }
 
     let averageProductsPerWarehouseValues = []
-    for(const property in averageProductsPerWarehouse){
+    let averageProductsPerWarehouseKeys = []
+    for (const property in averageProductsPerWarehouse) {
+        averageProductsPerWarehouseKeys.push(`${property}`);
         averageProductsPerWarehouseValues.push(averageProductsPerWarehouse[property])
     }
 
     const data = {
-        labels: averageWarehousesPerUserStatsKeys,
+        labels: [averageWarehousesPerUserStatsKeys, averageProductsPerWarehouseKeys],
         datasets: [
             {
                 label: '# warehouses per user.',
@@ -38,7 +40,7 @@ export const MultiAxisWarehouses = ({stats: {averageWarehousesPerUser, averagePr
             },
         ],
     }
-    
+
     const options = {
         scales: {
             yAxes: [
