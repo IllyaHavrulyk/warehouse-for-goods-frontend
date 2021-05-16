@@ -20,7 +20,7 @@ export const MultiAxisWarehouses = ({ stats: { averageWarehousesPerUser, average
     }
 
     const data = {
-        labels: [averageWarehousesPerUserStatsKeys, averageProductsPerWarehouseKeys],
+        labels: [averageWarehousesPerUserStatsKeys],
         datasets: [
             {
                 label: '# warehouses per user.',
