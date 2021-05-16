@@ -9,7 +9,7 @@ const Footer = () => {
                 TNTU - 2021 warehouse
             </div>
             <div className={style.links}>
-                <a id="linkTelegram" href="">Join us on Telegram!
+                <a id="linkTelegram" href="https://teleg.one/warehouse_for_goods_bot">Join us on Telegram!
                  <img for="linkTelegram" className={style.telegramIMG} src={telegramIMG} />
                 </a>
 
